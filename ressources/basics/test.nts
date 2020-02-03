@@ -1,0 +1,11 @@
+.chipsets:
+
+
+# dsqdsq
+
+output x
+
+clock c
+
+.links:
+c:1 x:1

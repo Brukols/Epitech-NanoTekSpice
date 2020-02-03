@@ -1,0 +1,45 @@
+# Admiral Business Machines 1954-2042
+# 4 bits adder
+
+.chipsets:
+input		a
+input		b
+output		s
+
+input		a2
+input		b2
+output		s2
+
+input		a3
+input		b3
+output		s3
+
+input		a4
+input		b4
+output		s4
+
+input		cin
+output		cout
+
+4008		adder
+
+.links:
+a:1		adder:7
+b:1		adder:6
+s:1		adder:10
+
+a2:1		adder:5
+b2:1		adder:4
+s2:1		adder:11
+
+a3:1		adder:3
+b3:1		adder:2
+s3:1		adder:12
+
+a4:1		adder:1
+b4:1		adder:15
+s4:1		adder:13
+
+cin:1		adder:9
+cout:1		adder:14
+
