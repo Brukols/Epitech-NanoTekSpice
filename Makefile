@@ -7,7 +7,10 @@
 
 NAME	= nanotekspice
 
-SRC	=	\
+SRC	=	src/nanotekspice.cpp	\
+		src/errors/Errors.cpp	\
+		src/parser/Parser.cpp	\
+
 
 SRC_MAIN	=	src/main.cpp	\
 
@@ -18,7 +21,7 @@ SRC_TESTS =		$(SRC)	\
 
 CXXFLAGS += 	-W -Wall -Wextra -Wshadow -Werror -I include\
 
-LDFLAGS =	-lsfml-graphics -lsfml-window -lsfml-system -lncurses
+LDFLAGS =	\
 
 LDFLAGS_TESTS = -lcriterion --coverage	\
 
