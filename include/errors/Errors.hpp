@@ -1,8 +1,15 @@
+/*
+** EPITECH PROJECT, 2020
+** OOP_nanotekspice_2019
+** File description:
+** TODO: add description
+*/
+
+
 #ifndef ERROR_HPP
 #define ERROR_HPP
 
 #include <string>
-
 
 // NTSError class
 
