@@ -10,6 +10,8 @@ NAME	= nanotekspice
 SRC	=	src/nanotekspice.cpp	\
 		src/errors/Errors.cpp	\
 		src/parser/Parser.cpp	\
+		src/parser/ParserFile.cpp	\
+		src/parser/ParserLine.cpp	\
 
 
 SRC_MAIN	=	src/main.cpp	\

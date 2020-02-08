@@ -8,10 +8,7 @@
 #include "../../include/Parser.hpp"
 #include "../../include/errors/Errors.hpp"
 
-nts::Parser::Parser(int ac, char **av) : _args(av, av + ac), _filename(_args.back())
+void nts::Parser::cutComment(std::string &line)
 {
-}
-
-nts::Parser::~Parser()
-{
+    line.substr(0, line.find("#"));
 }

@@ -21,6 +21,9 @@ namespace nts {
             /* FILE ONLY FUNCTION */
             void openFile();
             void closeFile();
+
+            /* PARSE FUNCTION */
+            void cutComment(std::string &line);
         private:
             std::vector<std::string> _args;
             const std::string &_filename;
