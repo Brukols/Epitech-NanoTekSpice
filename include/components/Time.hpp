@@ -11,13 +11,16 @@
 #include "../interfaces/IComponent.hpp"
 #include "../interfaces/AComponent.hpp"
 
-class TimeComponent : public AComponent
+namespace nts
 {
-    public:
-        TimeComponent();
-        ~TimeComponent();
-    private:
+    class TimeComponent : public AComponent {
+        public:
+            TimeComponent();
 
-};
+            ~TimeComponent();
+
+        private:
+    };
+}
 
 #endif //OOP_NANOTEKSPICE_2019_TIME_HPP

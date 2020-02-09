@@ -11,13 +11,16 @@
 #include "../interfaces/IComponent.hpp"
 #include "../interfaces/AComponent.hpp"
 
-class OutputComponent : public AComponent
+namespace nts
 {
-    public:
-        OutputComponent();
-        ~OutputComponent();
-    private:
+    class OutputComponent : public AComponent {
+        public:
+            OutputComponent();
 
-};
+            ~OutputComponent();
+
+        private:
+    };
+}
 
 #endif //OOP_NANOTEKSPICE_2019_OUTPUT_HPP

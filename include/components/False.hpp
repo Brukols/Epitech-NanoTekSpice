@@ -11,13 +11,16 @@
 #include "../interfaces/IComponent.hpp"
 #include "../interfaces/AComponent.hpp"
 
-class FalseComponent : public AComponent
+namespace nts
 {
-    public:
-        FalseComponent();
-        ~FalseComponent();
-    private:
+    class FalseComponent : public AComponent {
+        public:
+            FalseComponent();
 
-};
+            ~FalseComponent();
+
+        private:
+    };
+}
 
 #endif //OOP_NANOTEKSPICE_2019_FALSE_HPP

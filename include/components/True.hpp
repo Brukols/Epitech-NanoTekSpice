@@ -11,13 +11,16 @@
 #include "../interfaces/IComponent.hpp"
 #include "../interfaces/AComponent.hpp"
 
-class TrueComponent : public AComponent
+namespace nts
 {
-    public:
-        TrueComponent();
-        ~TrueComponent();
-    private:
+    class TrueComponent : public AComponent {
+        public:
+            TrueComponent();
 
-};
+            ~TrueComponent();
+
+        private:
+    };
+}
 
 #endif //OOP_NANOTEKSPICE_2019_TRUE_HPP

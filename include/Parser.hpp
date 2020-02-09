@@ -12,7 +12,8 @@
 #include <string>
 #include <vector>
 
-namespace nts {
+namespace nts
+{
     class Parser {
         public:
             Parser(std::vector<std::string> &args);
@@ -33,4 +34,5 @@ namespace nts {
             //const Circuit &_circuit;
     };
 }
+
 #endif //OOP_NANOTEKSPICE_2019_PARSER_HPP

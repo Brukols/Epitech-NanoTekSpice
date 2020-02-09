@@ -11,13 +11,16 @@
 #include "../interfaces/IComponent.hpp"
 #include "../interfaces/AComponent.hpp"
 
-class InputComponent : public AComponent
+namespace nts
 {
-    public:
-        InputComponent();
-        ~InputComponent();
-    private:
+    class InputComponent : public AComponent {
+        public:
+            InputComponent();
 
-};
+            ~InputComponent();
+
+        private:
+    };
+}
 
 #endif //OOP_NANOTEKSPICE_2019_INPUT_HPP
