@@ -9,7 +9,7 @@
 #include "../include/Parser.hpp"
 #include "../include/errors/Errors.hpp"
 
-int nanotekspice(int argc, char **argv)
+int nanotekspice(int argc, char **argv).
 {
     if (argc < 2)
         throw (UserError("No configuration file is provided", "User"));
