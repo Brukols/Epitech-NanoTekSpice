@@ -30,6 +30,7 @@ namespace nts {
             const std::vector<std::string> &_args;
             const std::string &_filename;
             std::ifstream _fileStream;
+            //const Circuit &_circuit;
     };
 }
 #endif //OOP_NANOTEKSPICE_2019_PARSER_HPP

@@ -14,7 +14,8 @@
 class OutputComponent : public AComponent
 {
     public:
-
+        OutputComponent();
+        ~OutputComponent();
     private:
 
 };

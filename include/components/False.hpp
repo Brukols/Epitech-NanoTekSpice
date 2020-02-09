@@ -14,7 +14,8 @@
 class FalseComponent : public AComponent
 {
     public:
-
+        FalseComponent();
+        ~FalseComponent();
     private:
 
 };

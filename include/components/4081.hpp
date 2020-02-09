@@ -8,6 +8,12 @@
 #ifndef OOP_NANOTEKSPICE_2019_4081_HPP
 #define OOP_NANOTEKSPICE_2019_4081_HPP
 
-
+class C4081 : public AComponent
+{
+    public:
+        C4081();
+        ~C4081();
+    private:
+};
 
 #endif //OOP_NANOTEKSPICE_2019_4081_HPP

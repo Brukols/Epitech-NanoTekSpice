@@ -14,7 +14,8 @@
 class TimeComponent : public AComponent
 {
     public:
-
+        TimeComponent();
+        ~TimeComponent();
     private:
 
 };

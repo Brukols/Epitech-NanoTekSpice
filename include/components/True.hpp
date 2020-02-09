@@ -14,7 +14,8 @@
 class TrueComponent : public AComponent
 {
     public:
-
+        TrueComponent();
+        ~TrueComponent();
     private:
 
 };

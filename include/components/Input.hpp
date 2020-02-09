@@ -14,7 +14,8 @@
 class InputComponent : public AComponent
 {
     public:
-
+        InputComponent();
+        ~InputComponent();
     private:
 
 };
