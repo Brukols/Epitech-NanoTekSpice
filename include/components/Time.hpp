@@ -9,14 +9,14 @@
 #define OOP_NANOTEKSPICE_2019_TIME_HPP
 
 #include "../interfaces/IComponent.hpp"
-#include "../interfaces/AComponent.hpp"
+#include "../AComponent.hpp"
 
 namespace nts
 {
     class TimeComponent : public AComponent {
         public:
 
-            TimeComponent();
+            TimeComponent(const std::string &name);
             ~TimeComponent();
 
             void compute();

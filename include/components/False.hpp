@@ -9,7 +9,7 @@
 #define OOP_NANOTEKSPICE_2019_FALSE_HPP
 
 #include "../interfaces/IComponent.hpp"
-#include "../interfaces/AComponent.hpp"
+#include "../AComponent.hpp"
 #include "../errors/Errors.hpp"
 
 namespace nts
@@ -17,7 +17,7 @@ namespace nts
     class FalseComponent : public AComponent {
         public:
 
-            FalseComponent();
+            FalseComponent(const std::string &name);
             ~FalseComponent();
 
             void setTristatePin(size_t num, nts::Tristate tristate); // In case we want to change the tristate

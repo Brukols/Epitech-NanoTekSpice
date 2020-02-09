@@ -7,7 +7,7 @@
 
 #include "../../include/components/Time.hpp"
 
-nts::TimeComponent::TimeComponent() : AComponent("time")
+nts::TimeComponent::TimeComponent(const std::string &name) : AComponent(name)
 {
 }
 
@@ -17,9 +17,9 @@ nts::TimeComponent::~TimeComponent()
 
 void nts::TimeComponent::compute()
 {
-    if (!_component[0])
+    if (!_components[0])
         throw UserError("Link missing", "False : compute");
     _tristatePin[0] = !_tristatePin[0];
-    _component[0]->setTristatePin(_pair[0].sc, _tristatePin[0]);
-    _component[0]->compute();
+    _components[0]->setTristatePin(_pair[0].second, _tristatePin[0]);
+    _components[0]->compute();
 }

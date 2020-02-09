@@ -5,24 +5,24 @@
 ** TODO: add description
 */
 
-#include "errors/Errors.hpp"
+#include "../../include/errors/Errors.hpp"
 
 // NTSError class
 
-NTSError::NTSError(const std::string &message, const std::string &component) : _message(message), _component(component)
+nts::NTSError::NTSError(const std::string &message, const std::string &component) : _message(message), _component(component)
 {
 }
 
-NTSError::~NTSError()
+nts::NTSError::~NTSError()
 {
 }
 
-const std::string &NTSError::getComponent() const
+const std::string &nts::NTSError::getComponent() const
 {
     return (_component);
 }
 
-const char *NTSError::what() const noexcept
+const char *nts::NTSError::what() const noexcept
 {
     return (_message.c_str());
 }
@@ -30,32 +30,32 @@ const char *NTSError::what() const noexcept
 
 // SyntaxError class
 
-SyntaxError::SyntaxError(const std::string &message, const std::string &component) : NTSError(message, component)
+nts::SyntaxError::SyntaxError(const std::string &message, const std::string &component) : NTSError(message, component)
 {
 }
 
-SyntaxError::~SyntaxError()
+nts::SyntaxError::~SyntaxError()
 {
 }
 
 
 // FileError class
 
-FileError::FileError(const std::string &message, const std::string &component) : NTSError(message, component)
+nts::FileError::FileError(const std::string &message, const std::string &component) : NTSError(message, component)
 {
 }
 
-FileError::~FileError()
+nts::FileError::~FileError()
 {
 }
 
 
 // UserError class
 
-UserError::UserError(const std::string &message, const std::string &component) : NTSError(message, component)
+nts::UserError::UserError(const std::string &message, const std::string &component) : NTSError(message, component)
 {
 }
 
-UserError::~UserError()
+nts::UserError::~UserError()
 {
 }

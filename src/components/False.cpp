@@ -7,9 +7,9 @@
 
 #include "../../include/components/False.hpp"
 
-nts::FalseComponent::FalseComponent() : AComponent("false")
+nts::FalseComponent::FalseComponent(const std::string &name) : AComponent(name)
 {
-    tristatePin[0] = nts::FALSE;
+    _tristatePin[0] = nts::FALSE;
 }
 
 nts::FalseComponent::~FalseComponent()
@@ -23,8 +23,8 @@ void nts::FalseComponent::setTristatePin(size_t num, nts::Tristate tristate)
 
 void nts::FalseComponent::compute()
 {
-    if (!_component[0])
+    if (!_components[0])
         throw UserError("Link missing", "False : compute");
-    _component[0]->setTristatePin(_pair[0].sc, nts::FALSE);
-    _component[0]->compute();
+    _components[0]->setTristatePin(_pair[0].second, nts::FALSE);
+    _components[0]->compute();
 }

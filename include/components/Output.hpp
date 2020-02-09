@@ -9,14 +9,14 @@
 #define OOP_NANOTEKSPICE_2019_OUTPUT_HPP
 
 #include "../interfaces/IComponent.hpp"
-#include "../interfaces/AComponent.hpp"
+#include "../AComponent.hpp"
 
 namespace nts
 {
     class OutputComponent : public AComponent {
         public:
 
-            OutputComponent();
+            OutputComponent(const std::string &name);
             ~OutputComponent();
 
             void compute();

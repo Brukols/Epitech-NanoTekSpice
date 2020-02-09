@@ -7,7 +7,7 @@
 
 #include "../../include/components/True.hpp"
 
-nts::TrueComponent::TrueComponent() : AComponent("true")
+nts::TrueComponent::TrueComponent(const std::string &name) : AComponent(name)
 {
     _tristatePin[0] = nts::TRUE;
 }
@@ -23,8 +23,8 @@ void nts::TrueComponent::setTristatePin(size_t num, nts::Tristate tristate)
 
 void nts::TrueComponent::compute()
 {
-    if (!_component[0])
+    if (!_components[0])
         throw UserError("Link missing", "True : compute");
-    _component[0]->setTristatePin(_pair[0].sc, nts::TRUE);
-    _component[0]->compute();
+    _components[0]->setTristatePin(_pair[0].second, nts::TRUE);
+    _components[0]->compute();
 }

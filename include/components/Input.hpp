@@ -9,14 +9,14 @@
 #define OOP_NANOTEKSPICE_2019_INPUT_HPP
 
 #include "../interfaces/IComponent.hpp"
-#include "../interfaces/AComponent.hpp"
+#include "../AComponent.hpp"
 
 namespace nts
 {
     class InputComponent : public AComponent {
         public:
 
-            InputComponent();
+            InputComponent(const std::string &name);
             ~InputComponent();
 
             void compute();
