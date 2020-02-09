@@ -16,9 +16,8 @@ nts::TrueComponent::~TrueComponent()
 {
 }
 
-void nts::TrueComponent::setTristatePin(size_t num, nts::Tristate tristate)
+void nts::TrueComponent::setTristatePin(__attribute__((unused)) size_t num, __attribute__((unused)) nts::Tristate tristate)
 {
-    _tristatePin[0] = nts::TRUE;
 }
 
 void nts::TrueComponent::compute()

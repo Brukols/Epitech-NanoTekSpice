@@ -19,7 +19,7 @@ void nts::TimeComponent::compute()
 {
     if (!_components[0])
         throw UserError("Link missing", "False : compute");
-    _tristatePin[0] = !_tristatePin[0];
+    _tristatePin[0] = (_tristatePin[0] == TRUE ? FALSE : (_tristatePin[0] == FALSE ? TRUE : UNDEFINED));
     _components[0]->setTristatePin(_pair[0].second, _tristatePin[0]);
     _components[0]->compute();
 }

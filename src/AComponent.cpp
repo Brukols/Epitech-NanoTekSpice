@@ -38,8 +38,8 @@ void nts::AComponent::setLink(size_t pin, nts::IComponent &other, size_t otherPi
 void nts::AComponent::dump() const
 {
     for (size_t i = 0; i < _components.size(); i++) {
-        std::string status = (_pair[i].first == UNDEFINED ? "undefined" : (_pair[i].first == TRUE ? "true" : "false"));
+        std::string status = (_tristatePin[i] == UNDEFINED ? "undefined" : (_tristatePin[i] == TRUE ? "true" : "false"));
 
-        std::cout << "Pin " << i + 1 << " which is " << status << " is linked to " << (_components[i] ? "no component" : _components[i]->getName()) << std::endl;
+        std::cout << "Pin " << _pair[i].first << " which is " << status << " is linked to " << (_components[i] ? "no component" : std::string(std::to_string(_pair[i].first) + _components[i]->getName())) << std::endl;
     }
 }
