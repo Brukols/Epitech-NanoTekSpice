@@ -20,6 +20,8 @@ NAME_TESTS	=	unit_test
 SRC_TESTS =		$(SRC)	\
 				tests/tests_redirect.cpp	\
 				tests/tests_cutComment.cpp	\
+				tests/tests_isLinkPart.cpp	\
+				tests/tests_isChipsetPart.cpp	\
 
 CXXFLAGS += 	-W -Wall -Wextra -Wshadow -Werror -I include\
 
