@@ -12,6 +12,12 @@ SRC	=	src/nanotekspice.cpp	\
 		src/parser/Parser.cpp	\
 		src/parser/ParserFile.cpp	\
 		src/parser/ParserLine.cpp	\
+		src/components/False.cpp	\
+		src/components/Input.cpp	\
+		src/components/Output.cpp	\
+		src/components/Time.cpp	\
+		src/components/True.cpp	\
+		src/AComponent.cpp	\
 
 SRC_MAIN	=	src/main.cpp	\
 

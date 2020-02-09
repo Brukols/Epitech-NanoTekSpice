@@ -18,6 +18,8 @@ nts::FalseComponent::~FalseComponent()
 
 void nts::FalseComponent::setTristatePin(size_t num, nts::Tristate tristate)
 {
+    (void)num;
+    (void)tristate;
     _tristatePin[0] = nts::FALSE;
 }
 
