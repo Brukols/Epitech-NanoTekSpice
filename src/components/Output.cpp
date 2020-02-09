@@ -6,3 +6,15 @@
 */
 
 #include "../../include/components/Output.hpp"
+
+nts::OutputComponent::OutputComponent() : AComponent("output")
+{
+}
+
+nts::OutputComponent::~OutputComponent()
+{
+}
+
+void nts::OutputComponent::compute()
+{
+}

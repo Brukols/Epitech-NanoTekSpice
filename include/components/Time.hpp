@@ -15,11 +15,14 @@ namespace nts
 {
     class TimeComponent : public AComponent {
         public:
-            TimeComponent();
 
+            TimeComponent();
             ~TimeComponent();
 
+            void compute();
+
         private:
+
     };
 }
 

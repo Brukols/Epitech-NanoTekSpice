@@ -15,11 +15,14 @@ namespace nts
 {
     class OutputComponent : public AComponent {
         public:
-            OutputComponent();
 
+            OutputComponent();
             ~OutputComponent();
 
+            void compute();
+
         private:
+
     };
 }
 

@@ -10,16 +10,21 @@
 
 #include "../interfaces/IComponent.hpp"
 #include "../interfaces/AComponent.hpp"
+#include "../errors/Errors.hpp"
 
 namespace nts
 {
     class FalseComponent : public AComponent {
         public:
-            FalseComponent();
 
+            FalseComponent();
             ~FalseComponent();
 
+            void setTristatePin(size_t num, nts::Tristate tristate); // In case we want to change the tristate
+            void compute();
+
         private:
+
     };
 }
 
