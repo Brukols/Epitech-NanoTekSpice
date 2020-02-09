@@ -13,6 +13,11 @@
 #include <criterion/theories.h>
 #include <iostream>
 
+#include "../include/Parser.hpp"
+#include "../include/nanotekspice.hpp"
+#include "../include/errors/Errors.hpp"
+#include "../include/interfaces/IComponent.hpp"
+
 void redirect_all_std(void);
 
 #endif

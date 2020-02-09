@@ -13,13 +13,13 @@ SRC	=	src/nanotekspice.cpp	\
 		src/parser/ParserFile.cpp	\
 		src/parser/ParserLine.cpp	\
 
-
 SRC_MAIN	=	src/main.cpp	\
 
 NAME_TESTS	=	unit_test
 
 SRC_TESTS =		$(SRC)	\
 				tests/tests_redirect.cpp	\
+				tests/tests_cutComment.cpp	\
 
 CXXFLAGS += 	-W -Wall -Wextra -Wshadow -Werror -I include\
 

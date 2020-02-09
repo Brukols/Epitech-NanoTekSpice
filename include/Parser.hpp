@@ -15,7 +15,7 @@
 namespace nts {
     class Parser {
         public:
-            Parser(int ac, char **av);
+            Parser(std::vector<std::string> &args);
             ~Parser();
 
             /* FILE ONLY FUNCTION */
@@ -24,8 +24,10 @@ namespace nts {
 
             /* PARSE FUNCTION */
             void cutComment(std::string &line);
+            bool isLinkPart(const std::string &line) const;
+            bool isChipsetPart(const std::string &line) const;
         private:
-            std::vector<std::string> _args;
+            const std::vector<std::string> &_args;
             const std::string &_filename;
             std::ifstream _fileStream;
     };

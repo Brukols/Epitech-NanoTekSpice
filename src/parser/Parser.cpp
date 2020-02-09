@@ -8,8 +8,10 @@
 #include "../../include/Parser.hpp"
 #include "../../include/errors/Errors.hpp"
 
-nts::Parser::Parser(int ac, char **av) : _args(av, av + ac), _filename(_args.back())
+nts::Parser::Parser(std::vector<std::string> &args) : _args(args),
+_filename(_args.back())
 {
+
 }
 
 nts::Parser::~Parser()
