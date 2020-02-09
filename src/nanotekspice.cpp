@@ -13,7 +13,7 @@ int nanotekspice(int argc, char **argv)
 {
     std::vector<std::string> args(argv, argv + argc);
     if (argc < 2)
-        throw (UserError("No configuration file is provided", "User"));
+        throw (nts::UserError("No configuration file is provided", "User"));
     nts::Parser Parser(args);
     return 0;
 }
