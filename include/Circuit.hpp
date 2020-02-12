@@ -9,6 +9,7 @@
 #define OOP_NANOTEKSPICE_2019_CIRCUIT_HPP
 
 #include <memory>
+#include <map>
 
 #include "interfaces/IComponent.hpp"
 #include "components/4001.hpp"
@@ -25,6 +26,11 @@
 #include "components/4514.hpp"
 #include "components/4801.hpp"
 #include "components/2716.hpp"
+#include "components/Input.hpp"
+#include "components/Output.hpp"
+#include "components/True.hpp"
+#include "components/False.hpp"
+#include "components/Time.hpp"
 
 namespace nts
 {
@@ -50,6 +56,11 @@ namespace nts
             std::unique_ptr<IComponent> create4514(const std::string &value) const noexcept;
             std::unique_ptr<IComponent> create4801(const std::string &value) const noexcept;
             std::unique_ptr<IComponent> create2716(const std::string &value) const noexcept;
+            std::unique_ptr<IComponent> createInput(const std::string &value) const noexcept;
+            std::unique_ptr<IComponent> createOutput(const std::string &value) const noexcept;
+            std::unique_ptr<IComponent> createTime(const std::string &value) const noexcept;
+            std::unique_ptr<IComponent> createTrue(const std::string &value) const noexcept;
+            std::unique_ptr<IComponent> createFalse(const std::string &value) const noexcept;
 
         private:
             //Circuit total
