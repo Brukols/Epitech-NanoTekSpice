@@ -43,3 +43,18 @@ void nts::AComponent::dump() const
         std::cout << "Pin " << _pair[i].first << " which is " << status << " is linked to " << (_components[i] ? "no component" : std::string(std::to_string(_pair[i].first) + _components[i]->getName())) << std::endl;
     }
 }
+
+nts::Tristate nts::AComponent::compute(size_t pin)
+{
+    if (pin < 1) {
+        // Throw an execption
+        return (UNDEFINED);
+    }
+    for (size_t i = 0; i < _pair.size(); i++) {
+        if (_pair[i].first == pin) {
+            _components[i]->setTristatePin(_pair[i].second, _tristatePin[i]);
+            return (_tristatePin[i]);
+        }
+    }
+    return (UNDEFINED);
+}

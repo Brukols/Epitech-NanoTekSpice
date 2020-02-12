@@ -20,7 +20,6 @@ namespace nts
             ~TrueComponent();
 
             void setTristatePin(size_t num, nts::Tristate tristate); // In case we want to change the tristate
-            void compute();
 
         private:
 

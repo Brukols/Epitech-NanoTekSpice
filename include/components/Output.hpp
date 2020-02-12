@@ -19,8 +19,6 @@ namespace nts
             OutputComponent(const std::string &name);
             ~OutputComponent();
 
-            void compute();
-
         private:
 
     };
