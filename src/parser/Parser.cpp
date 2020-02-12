@@ -5,13 +5,16 @@
 ** TODO: add description
 */
 
-#include "../../include/Parser.hpp"
+#include "../../include/parser/Parser.hpp"
 #include "../../include/errors/Errors.hpp"
 
-nts::Parser::Parser(std::vector<std::string> &args) : _args(args),
-_filename(_args.back())
+nts::Parser::Parser(std::vector<std::string> &args) try : _args(args), _file
+(_args[1])
 {
 
+} catch (const FileError &e)
+{
+    throw e;
 }
 
 nts::Parser::~Parser()

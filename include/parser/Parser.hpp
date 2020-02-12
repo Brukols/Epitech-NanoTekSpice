@@ -11,7 +11,8 @@
 #include <fstream>
 #include <string>
 #include <vector>
-#include "components/Input.hpp"
+#include "../components/Input.hpp"
+#include "File.hpp"
 
 namespace nts
 {
@@ -20,24 +21,14 @@ namespace nts
             Parser(std::vector<std::string> &args);
             ~Parser();
 
-            /* FILE ONLY FUNCTION */
-            void openFile();
-            void closeFile();
-
             /* PARSE FUNCTION */
             void cutComment(std::string &line);
             bool isLinkPart(const std::string &line) const;
             bool isChipsetPart(const std::string &line) const;
         private:
             const std::vector<std::string> &_args;
-            const std::string &_filename;
-            std::ifstream _fileStream;
+            File _file;
             //const Circuit &_circuit;
-
-            /* Executable Command */
-            //void exit_nano();
-            //void display() const;
-            //void changeInputValue(InputComponent &, Tristate);
 
     };
 }
