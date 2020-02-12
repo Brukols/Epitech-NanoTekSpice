@@ -22,11 +22,3 @@ void nts::FalseComponent::setTristatePin(size_t num, nts::Tristate tristate)
     (void)tristate;
     _tristatePin[0] = nts::FALSE;
 }
-
-void nts::FalseComponent::compute()
-{
-    if (!_components[0])
-        throw UserError("Link missing", "False : compute");
-    _components[0]->setTristatePin(_pair[0].second, nts::FALSE);
-    _components[0]->compute();
-}

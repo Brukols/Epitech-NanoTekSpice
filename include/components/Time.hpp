@@ -19,8 +19,6 @@ namespace nts
             TimeComponent(const std::string &name);
             ~TimeComponent();
 
-            void compute();
-
         private:
 
     };

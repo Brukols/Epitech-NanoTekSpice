@@ -20,8 +20,7 @@ namespace nts
             FalseComponent(const std::string &name);
             ~FalseComponent();
 
-            void setTristatePin(size_t num, nts::Tristate tristate); // In case we want to change the tristate
-            void compute();
+            void setTristatePin(size_t num, nts::Tristate tristate) override; // In case we want to change the tristate
 
         private:
 

@@ -19,8 +19,6 @@ namespace nts
             InputComponent(const std::string &name);
             ~InputComponent();
 
-            void compute();
-
         private:
 
     };

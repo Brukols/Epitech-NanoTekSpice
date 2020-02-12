@@ -17,6 +17,11 @@
 #include "../include/nanotekspice.hpp"
 #include "../include/errors/Errors.hpp"
 #include "../include/interfaces/IComponent.hpp"
+#include "../include/components/False.hpp"
+#include "../include/components/True.hpp"
+#include "../include/components/Input.hpp"
+#include "../include/components/Output.hpp"
+#include "../include/components/Time.hpp"
 
 void redirect_all_std(void);
 
