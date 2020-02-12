@@ -7,7 +7,7 @@
 
 #include "../../include/components/True.hpp"
 
-nts::TrueComponent::TrueComponent(const std::string &name) : AComponent(name)
+nts::TrueComponent::TrueComponent(const std::string &name) : AComponent(name, 1)
 {
     _tristatePin[0] = nts::TRUE;
 }

@@ -7,7 +7,7 @@
 
 #include "../../include/components/Time.hpp"
 
-nts::TimeComponent::TimeComponent(const std::string &name) : AComponent(name)
+nts::TimeComponent::TimeComponent(const std::string &name) : AComponent(name, 1)
 {
 }
 

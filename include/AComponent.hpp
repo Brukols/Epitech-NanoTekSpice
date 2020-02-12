@@ -20,7 +20,7 @@ namespace nts
     class AComponent : public IComponent {
         public:
 
-            AComponent(const std::string &name);
+            AComponent(const std::string &name, size_t nbPin);
             virtual ~AComponent() = default;
 
             // GETTER AND SETTER

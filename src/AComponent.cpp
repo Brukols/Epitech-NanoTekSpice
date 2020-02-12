@@ -9,7 +9,8 @@
 
 #include <iostream>
 
-nts::AComponent::AComponent(const std::string &name) : _name(name)
+nts::AComponent::AComponent(const std::string &name, size_t nbPin) : _name
+(name), _tristatePin(nbPin, Tristate::UNDEFINED)
 {
 }
 

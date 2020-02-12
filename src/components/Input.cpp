@@ -7,7 +7,7 @@
 
 #include "../../include/components/Input.hpp"
 
-nts::InputComponent::InputComponent(const std::string &name) : AComponent(name)
+nts::InputComponent::InputComponent(const std::string &name) : AComponent(name, 1)
 {
 }
 

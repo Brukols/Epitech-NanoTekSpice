@@ -7,7 +7,7 @@
 
 #include "../../include/components/False.hpp"
 
-nts::FalseComponent::FalseComponent(const std::string &name) : AComponent(name)
+nts::FalseComponent::FalseComponent(const std::string &name) : AComponent(name, 1)
 {
     _tristatePin[0] = nts::FALSE;
 }
