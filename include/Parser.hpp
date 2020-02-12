@@ -11,6 +11,7 @@
 #include <fstream>
 #include <string>
 #include <vector>
+#include "components/Input.hpp"
 
 namespace nts
 {
@@ -32,6 +33,12 @@ namespace nts
             const std::string &_filename;
             std::ifstream _fileStream;
             //const Circuit &_circuit;
+
+            /* Executable Command */
+            //void exit_nano();
+            //void display() const;
+            //void changeInputValue(InputComponent &, Tristate);
+
     };
 }
 
