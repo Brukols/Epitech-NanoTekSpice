@@ -5,7 +5,7 @@
 ** TODO: add description
 */
 
-#include "../../include/components/4017.hpp"
+#include "../../include/components/4030.hpp"
 
 nts::C4030::C4030(const std::string &name) : AComponent(name, 14)
 {

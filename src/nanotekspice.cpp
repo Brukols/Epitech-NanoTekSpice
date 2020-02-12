@@ -8,12 +8,21 @@
 #include "../include/nanotekspice.hpp"
 #include "../include/Parser.hpp"
 #include "../include/errors/Errors.hpp"
+#include <iostream>
 
 int nanotekspice(int argc, char **argv)
 {
     std::vector<std::string> args(argv, argv + argc);
-    if (argc < 2)
-        throw (nts::UserError("No configuration file is provided", "User"));
-    nts::Parser Parser(args);
+    if (argc < 2) {
+        std::cout << "./nanotekspice circuit_file.nts input_name=input_value"<< std::endl;
+        return 0;
+    }
+    try {
+        nts::Parser Parser(args);
+        //Parser->prompt();
+    } catch (nts::NTSError const &e) {
+        std::cout << e.getComponent() << ": " << e.what() << std::endl;
+        return 84;
+    }
     return 0;
 }

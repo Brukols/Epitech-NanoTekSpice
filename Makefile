@@ -18,6 +18,20 @@ SRC	=	src/nanotekspice.cpp	\
 		src/components/Time.cpp	\
 		src/components/True.cpp	\
 		src/AComponent.cpp	\
+		src/components/2716.cpp	\
+		src/components/4001.cpp	\
+		src/components/4008.cpp	\
+		src/components/4011.cpp	\
+		src/components/4013.cpp	\
+		src/components/4017.cpp	\
+		src/components/4030.cpp	\
+		src/components/4040.cpp	\
+		src/components/4069.cpp	\
+		src/components/4071.cpp	\
+		src/components/4081.cpp	\
+		src/components/4094.cpp	\
+		src/components/4514.cpp	\
+		src/components/4801.cpp	\
 
 SRC_MAIN	=	src/main.cpp	\
 
