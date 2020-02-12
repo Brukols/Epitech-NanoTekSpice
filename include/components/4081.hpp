@@ -14,10 +14,10 @@ namespace nts
 {
     class C4081 : public AComponent {
         public:
-            C4081();
+            C4081(const std::string &name);
             ~C4081();
 
-        private:
+            void run();
     };
 }
 
