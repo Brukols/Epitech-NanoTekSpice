@@ -15,7 +15,9 @@
 void nts::Parser::prompt()
 {
     std::string command;
-    std::unique_ptr<nts::IComponent>output = _circuit.createOutput("Salut");
+    std::unique_ptr<nts::IComponent>output = _circuit.createOutput("B");
+    std::unique_ptr<nts::IComponent>output2 = _circuit.createOutput("A");
+    _circuit.addOutput(output2);
     _circuit.addOutput(output);
     signal(SIGINT, signalHandler);
     this->displayPrompt();
@@ -48,14 +50,24 @@ bool sortOutput(std::unique_ptr<nts::IComponent> &cmp1, std::unique_ptr<nts::ICo
 {
     std::string name1 = cmp1->getName();
     std::string name2 = cmp2->getName();
-    return name1.compare(name2);
+    if (name1.compare(name2) < 0)
+        return true;
+    return false;
 }
 
 void nts::Parser::display(const std::string &line)
 {
     std::vector<std::unique_ptr<nts::IComponent>> &outputs = _circuit.getOutputs();
     std::sort(outputs.begin(), outputs.end(), sortOutput);
-    for_each(outputs.begin(), outputs.end(), [](const auto& o) {std::cout << o->getName() << "="; });
+    for_each(outputs.begin(), outputs.end(), [](const auto& o)
+        {
+            auto *oc = static_cast<nts::OutputComponent*>(o.get());
+            std::cout << oc->getName() << "=";
+            if (oc->getTristate(1) == -1)
+                std::cout << "U" << std::endl;
+            else
+                std::cout << oc->getTristate(1) << std::endl;
+        });
     (void)line;
 
 }
