@@ -46,32 +46,6 @@ void nts::Parser::exit(const std::string &line)
     _exit = true;
 }
 
-bool sortOutput(std::unique_ptr<nts::IComponent> &cmp1, std::unique_ptr<nts::IComponent> &cmp2)
-{
-    std::string name1 = cmp1->getName();
-    std::string name2 = cmp2->getName();
-    if (name1.compare(name2) < 0)
-        return true;
-    return false;
-}
-
-void nts::Parser::display(const std::string &line)
-{
-    std::vector<std::unique_ptr<nts::IComponent>> &outputs = _circuit.getOutputs();
-    std::sort(outputs.begin(), outputs.end(), sortOutput);
-    for_each(outputs.begin(), outputs.end(), [](const auto& o)
-        {
-            auto *oc = static_cast<nts::OutputComponent*>(o.get());
-            std::cout << oc->getName() << "=";
-            if (oc->getTristate(1) == -1)
-                std::cout << "U" << std::endl;
-            else
-                std::cout << oc->getTristate(1) << std::endl;
-        });
-    (void)line;
-
-}
-
 void nts::Parser::changeValueInput(const std::string &line)
 {
     (void)line;
@@ -93,4 +67,79 @@ void nts::Parser::loop(const std::string &line)
 void nts::Parser::dump(const std::string &line)
 {
     (void)line;
+}
+
+bool sortComponentsByName(std::unique_ptr<nts::IComponent> &cmp1, std::unique_ptr<nts::IComponent> &cmp2)
+{
+    std::string name1 = cmp1->getName();
+    std::string name2 = cmp2->getName();
+    if (name1.compare(name2) < 0)
+        return true;
+    return false;
+}
+
+void nts::Parser::display(const std::string &line)
+{
+    this->displayOutputs();
+    (void)line;
+}
+
+void nts::Parser::displayOutputs()
+{
+    std::vector<std::unique_ptr<nts::IComponent>> &outputs = _circuit.getOutputs();
+    std::sort(outputs.begin(), outputs.end(), sortComponentsByName);
+    for_each(outputs.begin(), outputs.end(), [](const auto& o)
+    {
+        auto *oc = static_cast<nts::OutputComponent*>(o.get());
+        std::cout << oc->getName() << "=";
+        if (oc->getTristate(1) == -1)
+            std::cout << "U" << std::endl;
+        else
+            std::cout << oc->getTristate(1) << std::endl;
+    });
+}
+
+void nts::Parser::displayInputs()
+{
+    std::vector<std::unique_ptr<nts::IComponent>> &inputs = _circuit.getInputs();
+    std::sort(inputs.begin(), inputs.end(), sortComponentsByName);
+    for_each(inputs.begin(), inputs.end(), [](const auto& o)
+    {
+        auto *oc = static_cast<nts::InputComponent*>(o.get());
+        std::cout << oc->getName() << "=";
+        if (oc->getTristate(1) == -1)
+            std::cout << "U" << std::endl;
+        else
+            std::cout << oc->getTristate(1) << std::endl;
+    });
+}
+
+void nts::Parser::displayComponents()
+{
+    std::vector<std::unique_ptr<nts::IComponent>> &components = _circuit.getComponents();
+    std::sort(components.begin(), components.end(), sortComponentsByName);
+    for_each(components.begin(), components.end(), [](const auto& o)
+    {
+        auto *oc = static_cast<nts::AComponent*>(o.get());
+        std::cout << oc->getName() << "=";
+        if (oc->getTristate(1) == -1)
+            std::cout << "U" << std::endl;
+        else
+            std::cout << oc->getTristate(1) << std::endl;
+    });
+}
+
+void nts::Parser::displayClock()
+{
+    std::vector<std::unique_ptr<nts::IComponent>> &clocks = _circuit.getClocks();
+    std::sort(clocks.begin(), clocks.end(), sortComponentsByName);
+    for_each(clocks.begin(), clocks.end(), [](const auto& o)
+    {
+        auto *oc = static_cast<nts::ClockComponent*>(o.get());
+        std::cout << oc->getName() << "=";
+        if (oc->getTristate(1) == -1)
+            std::cout << "U" << std::endl;
+        else
+            std::cout << oc->getTristate(1) << std::endl;
+    });
 }

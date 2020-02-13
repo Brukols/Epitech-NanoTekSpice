@@ -62,15 +62,25 @@ namespace nts
             std::unique_ptr<IComponent> createTrue(const std::string &value) const noexcept;
             std::unique_ptr<IComponent> createFalse(const std::string &value) const noexcept;
 
+            /* GETTERS AND SETTERS */
             std::vector<std::unique_ptr<nts::IComponent>> &getOutputs();
             void addOutput(std::unique_ptr<nts::IComponent> &output);
+
+            std::vector<std::unique_ptr<nts::IComponent>> &getInputs();
+            void addInput(std::unique_ptr<nts::IComponent> &input);
+
+            std::vector<std::unique_ptr<nts::IComponent>> &getComponents();
+            void addComponent(std::unique_ptr<nts::IComponent> &component);
+
+            std::vector<std::unique_ptr<nts::IComponent>> &getClocks();
+            void addClock(std::unique_ptr<nts::IComponent> &clock);
 
         private:
             //Circuit total
             std::vector<std::unique_ptr<nts::IComponent>> _outputs;
-            //std::vector<nts::IComponent*> _inputs;
-            //std::vector<nts::IComponent*> _components;
-            //std::vector<nts::IComponent*> _clocks;
+            std::vector<std::unique_ptr<nts::IComponent>> _inputs;
+            std::vector<std::unique_ptr<nts::IComponent>> _components;
+            std::vector<std::unique_ptr<nts::IComponent>> _clocks;
             //list des inputs
             //list des components
             //list des times

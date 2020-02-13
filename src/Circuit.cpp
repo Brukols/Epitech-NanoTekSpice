@@ -148,3 +148,33 @@ void nts::Circuit::addOutput(std::unique_ptr<nts::IComponent> & output)
 {
     _outputs.push_back(std::move(output));
 }
+
+std::vector<std::unique_ptr<nts::IComponent>> &nts::Circuit::getInputs()
+{
+    return _inputs;
+}
+
+void nts::Circuit::addInput(std::unique_ptr<nts::IComponent> & input)
+{
+    _inputs.push_back(std::move(input));
+}
+
+std::vector<std::unique_ptr<nts::IComponent>> &nts::Circuit::getComponents()
+{
+    return _components;
+}
+
+void nts::Circuit::addComponent(std::unique_ptr<nts::IComponent> & component)
+{
+    _components.push_back(std::move(component));
+}
+
+std::vector<std::unique_ptr<nts::IComponent>> &nts::Circuit::getClocks()
+{
+    return _clocks;
+}
+
+void nts::Circuit::addClock(std::unique_ptr<nts::IComponent> & clock)
+{
+    _clocks.push_back(std::move(clock));
+}

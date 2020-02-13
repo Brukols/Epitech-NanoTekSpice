@@ -45,6 +45,10 @@ namespace nts
 
         private:
             void displayPrompt() const;
+            void displayOutputs();
+            void displayInputs();
+            void displayComponents();
+            void displayClock();
             void exit(const std::string &);
             void display(const std::string &);
             void changeValueInput(const std::string &);
