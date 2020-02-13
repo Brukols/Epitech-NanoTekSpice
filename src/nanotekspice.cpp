@@ -6,7 +6,7 @@
 */
 
 #include "../include/nanotekspice.hpp"
-#include "../include/Parser.hpp"
+#include "../include/parser/Parser.hpp"
 #include "../include/errors/Errors.hpp"
 #include <iostream>
 
@@ -19,7 +19,7 @@ int nanotekspice(int argc, char **argv)
     }
     try {
         nts::Parser Parser(args);
-        //Parser->prompt();
+        Parser.prompt();
     } catch (nts::NTSError const &e) {
         std::cout << e.getComponent() << ": " << e.what() << std::endl;
         return 84;

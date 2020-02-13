@@ -9,8 +9,9 @@ NAME	= nanotekspice
 
 SRC	=	src/nanotekspice.cpp	\
 		src/errors/Errors.cpp	\
+		src/parser/File.cpp	\
 		src/parser/Parser.cpp	\
-		src/parser/ParserFile.cpp	\
+		src/parser/Prompt.cpp	\
 		src/parser/ParserLine.cpp	\
 		src/components/False.cpp	\
 		src/components/Input.cpp	\
