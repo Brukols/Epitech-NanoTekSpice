@@ -9,6 +9,7 @@
 #include "../../include/errors/Errors.hpp"
 #include <iostream>
 #include <csignal>
+#include <cstdlib>
 
 void nts::Parser::prompt()
 {
@@ -16,7 +17,10 @@ void nts::Parser::prompt()
 
     signal(SIGINT, signalHandler);
     this->displayPrompt();
-    while (std::getline(std::cin, command)) {
+    while (std::getline(std::cin, command) && !_exit) {
+        if (_cmdMap.find(command) != _cmdMap.end())
+            (this->*_cmdMap[command])(command);
+        if (_exit) break;
         this->displayPrompt();
     }
 }
@@ -29,4 +33,35 @@ void nts::Parser::displayPrompt() const
 void nts::Parser::signalHandler(int signum)
 {
     (void)signum;
+}
+
+void nts::Parser::exit(const std::string &line)
+{
+    (void)line;
+    _exit = true;
+}
+
+void nts::Parser::display(const std::string &line)
+{
+    (void)line;
+}
+
+void nts::Parser::changeValueInput(const std::string &line)
+{
+    (void)line;
+}
+
+void nts::Parser::simulate(const std::string &line)
+{
+    (void)line;
+}
+
+void nts::Parser::loop(const std::string &line)
+{
+    (void)line;
+}
+
+void nts::Parser::dump(const std::string &line)
+{
+    (void)line;
 }
