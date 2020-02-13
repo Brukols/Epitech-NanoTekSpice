@@ -30,7 +30,7 @@
 #include "components/Output.hpp"
 #include "components/True.hpp"
 #include "components/False.hpp"
-#include "components/Time.hpp"
+#include "components/Clock.hpp"
 
 namespace nts
 {
@@ -58,13 +58,19 @@ namespace nts
             std::unique_ptr<IComponent> create2716(const std::string &value) const noexcept;
             std::unique_ptr<IComponent> createInput(const std::string &value) const noexcept;
             std::unique_ptr<IComponent> createOutput(const std::string &value) const noexcept;
-            std::unique_ptr<IComponent> createTime(const std::string &value) const noexcept;
+            std::unique_ptr<IComponent> createClock(const std::string &value)const noexcept;
             std::unique_ptr<IComponent> createTrue(const std::string &value) const noexcept;
             std::unique_ptr<IComponent> createFalse(const std::string &value) const noexcept;
 
+            std::vector<std::unique_ptr<nts::IComponent>> &getOutputs();
+            void addOutput(std::unique_ptr<nts::IComponent> &output);
+
         private:
             //Circuit total
-            //list des outputs
+            std::vector<std::unique_ptr<nts::IComponent>> _outputs;
+            //std::vector<nts::IComponent*> _inputs;
+            //std::vector<nts::IComponent*> _components;
+            //std::vector<nts::IComponent*> _clocks;
             //list des inputs
             //list des components
             //list des times

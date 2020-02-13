@@ -38,7 +38,7 @@ std::unique_ptr<nts::IComponent> nts::Circuit::createComponent(const std::string
     map["output"] = &nts::Circuit::createOutput;
     map["true"] = &nts::Circuit::createTrue;
     map["false"] = &nts::Circuit::createFalse;
-    map["time"] = &nts::Circuit::createTime;
+    map["clock"] = &nts::Circuit::createClock;
 
     return ((this->*map[type])(value));
 }
@@ -133,7 +133,18 @@ std::unique_ptr<nts::IComponent> nts::Circuit::createFalse(const std::string &va
     return (std::unique_ptr<nts::IComponent>(new FalseComponent(value)));
 }
 
-std::unique_ptr<nts::IComponent> nts::Circuit::createTime(const std::string &value) const noexcept
+std::unique_ptr<nts::IComponent> nts::Circuit::createClock(const std::string
+&value) const noexcept
 {
-    return (std::unique_ptr<nts::IComponent>(new TimeComponent(value)));
+    return (std::unique_ptr<nts::IComponent>(new ClockComponent(value)));
+}
+
+std::vector<std::unique_ptr<nts::IComponent>> &nts::Circuit::getOutputs()
+{
+    return _outputs;
+}
+
+void nts::Circuit::addOutput(std::unique_ptr<nts::IComponent> & output)
+{
+    _outputs.push_back(std::move(output));
 }

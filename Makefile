@@ -34,6 +34,7 @@ SRC	=	src/nanotekspice.cpp	\
 		src/components/4094.cpp	\
 		src/components/4514.cpp	\
 		src/components/4801.cpp	\
+		src/Circuit.cpp	\
 
 SRC_MAIN	=	src/main.cpp	\
 

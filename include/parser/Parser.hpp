@@ -11,9 +11,10 @@
 #include <fstream>
 #include <string>
 #include <vector>
+#include <map>
 #include "../components/Input.hpp"
 #include "File.hpp"
-#include <map>
+#include "../Circuit.hpp"
 
 namespace nts
 {
@@ -40,7 +41,7 @@ namespace nts
             std::map<std::string, execFunc> _cmdMap;
             bool _exit;
             static bool _loop;
-            //const Circuit &_circuit;
+            Circuit _circuit;
 
         private:
             void displayPrompt() const;
