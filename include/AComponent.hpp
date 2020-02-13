@@ -30,7 +30,7 @@ namespace nts
             // OVERRIDE
             void setLink(size_t pin, IComponent &other, size_t otherPin) override;
             void dump() const override;
-            nts::Tristate compute(size_t pin = 1) override;
+            virtual nts::Tristate compute(size_t pin = 1) override;
 
         protected:
 

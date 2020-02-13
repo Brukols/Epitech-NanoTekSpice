@@ -10,8 +10,10 @@
 #include <iostream>
 
 nts::AComponent::AComponent(const std::string &name, size_t nbPin) : _name
-(name), _tristatePin(nbPin, Tristate::UNDEFINED)
+(name), _tristatePin(nbPin, Tristate::UNDEFINED), _components(nbPin, NULL)
 {
+    for (size_t i = 0; i < nbPin; i++)
+        _pair.push_back(std::pair<size_t, size_t>(i + 1, 0));
 }
 
 
@@ -24,16 +26,25 @@ const std::string &nts::AComponent::getName() const
 
 void nts::AComponent::setTristatePin(size_t nb, nts::Tristate pin)
 {
-    _tristatePin[nb] = pin;
+    for (size_t i = 0; i < _pair.size(); i++) {
+        if (_pair[i].first == nb) {
+            _tristatePin[i] = pin;
+            return;
+        }
+    }
+    throw ComponentError("Invalid number of pins", "setTristatePin");
 }
 
 
 // OVERRIDE
 
 void nts::AComponent::setLink(size_t pin, nts::IComponent &other, size_t otherPin)
+// Two input cannot be linked
 {
-    _pair.push_back(std::pair<size_t, size_t>(pin, otherPin));
-    _components.push_back(&other);
+    if (pin < 1 || pin > _pair.size())
+        throw ComponentError("Invalid number of pins", "setLink");
+    _pair[pin - 1].second = otherPin;
+    _components[pin - 1] = &other;
 }
 
 void nts::AComponent::dump() const
@@ -41,21 +52,14 @@ void nts::AComponent::dump() const
     for (size_t i = 0; i < _components.size(); i++) {
         std::string status = (_tristatePin[i] == UNDEFINED ? "undefined" : (_tristatePin[i] == TRUE ? "true" : "false"));
 
-        std::cout << "Pin " << _pair[i].first << " which is " << status << " is linked to " << (_components[i] ? "no component" : std::string(std::to_string(_pair[i].first) + _components[i]->getName())) << std::endl;
+        std::cout << "Pin " << _pair[i].first << " which is " << status << " is linked to " << (!_components[i] ? "no component" : std::string("pin " + std::to_string(_pair[i].second) + " of " + _components[i]->getName())) << std::endl;
     }
 }
 
 nts::Tristate nts::AComponent::compute(size_t pin)
 {
-    if (pin < 1) {
-        // Throw an execption
-        return (UNDEFINED);
-    }
-    for (size_t i = 0; i < _pair.size(); i++) {
-        if (_pair[i].first == pin) {
-            _components[i]->setTristatePin(_pair[i].second, _tristatePin[i]);
-            return (_tristatePin[i]);
-        }
-    }
+    if (pin < 1 || pin > _pair.size())
+        throw ComponentError("Invalid number of pins", "compute");
+    _components[pin - 1]->setTristatePin(_pair[pin - 1].second, _tristatePin[pin - 1]);
     return (UNDEFINED);
 }

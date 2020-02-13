@@ -65,6 +65,18 @@ namespace nts
         ~UserError();
     };
 
+
+    // UserError class
+
+    class ComponentError : public NTSError
+    {
+    private:
+
+    public:
+        ComponentError(const std::string &message, const std::string &component = "Unknown");
+        ~ComponentError();
+    };
+
 }
 
 #endif

@@ -59,3 +59,14 @@ nts::UserError::UserError(const std::string &message, const std::string &compone
 nts::UserError::~UserError()
 {
 }
+
+
+// ComponentError class
+
+nts::ComponentError::ComponentError(const std::string &message, const std::string &component) : NTSError(message, component)
+{
+}
+
+nts::ComponentError::~ComponentError()
+{
+}

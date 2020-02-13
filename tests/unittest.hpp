@@ -21,7 +21,7 @@
 #include "../include/components/True.hpp"
 #include "../include/components/Input.hpp"
 #include "../include/components/Output.hpp"
-#include "../include/components/Time.hpp"
+#include "../include/components/Clock.hpp"
 
 void redirect_all_std(void);
 
