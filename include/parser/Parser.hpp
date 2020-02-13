@@ -25,20 +25,24 @@ namespace nts
             /* TYPEDEF */
             typedef void (nts::Parser::*execFunc)(const std::string &);
 
-            /* PARSE FUNCTION */
+            /* PARSE LINE FUNCTION */
             void cutComment(std::string &line);
             bool isLinkPart(const std::string &line) const;
             bool isChipsetPart(const std::string &line) const;
+
+            /* PROMPT FUNCTION */
             void prompt();
+            static void signalHandler(int signum);
+
         private:
             const std::vector<std::string> &_args;
             File _file;
             std::map<std::string, execFunc> _cmdMap;
             bool _exit;
+            static bool _loop;
             //const Circuit &_circuit;
 
         private:
-            static void signalHandler(int signum);
             void displayPrompt() const;
             void exit(const std::string &);
             void display(const std::string &);

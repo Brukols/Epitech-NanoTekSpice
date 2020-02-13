@@ -32,6 +32,7 @@ void nts::Parser::displayPrompt() const
 
 void nts::Parser::signalHandler(int signum)
 {
+    nts::Parser::_loop = false;
     (void)signum;
 }
 
@@ -58,7 +59,9 @@ void nts::Parser::simulate(const std::string &line)
 
 void nts::Parser::loop(const std::string &line)
 {
-    (void)line;
+    nts::Parser::_loop = true;
+    while (_loop)
+        this->simulate(line);
 }
 
 void nts::Parser::dump(const std::string &line)

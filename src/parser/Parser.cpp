@@ -23,6 +23,8 @@ nts::Parser::Parser(std::vector<std::string> &args) try : _args(args), _file
     throw e;
 }
 
+bool nts::Parser::_loop = false;
+
 nts::Parser::~Parser()
 {
 }
