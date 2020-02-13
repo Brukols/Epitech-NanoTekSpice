@@ -8,6 +8,7 @@
 #include "../../include/components/4040.hpp"
 
 nts::C4040::C4040(const std::string &name) : AComponent(name, 16)
+// A voir après
 {
 
 }

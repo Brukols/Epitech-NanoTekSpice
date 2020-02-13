@@ -8,6 +8,7 @@
 #include "../../include/components/4514.hpp"
 
 nts::C4514::C4514(const std::string &name) : AComponent(name, 24)
+// A voir après
 {
 
 }

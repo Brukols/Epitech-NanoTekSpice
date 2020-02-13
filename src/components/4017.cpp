@@ -8,6 +8,7 @@
 #include "../../include/components/4017.hpp"
 
 nts::C4017::C4017(const std::string &name) : AComponent(name, 15)
+// A voir après
 {
 
 }

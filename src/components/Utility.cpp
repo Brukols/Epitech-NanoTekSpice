@@ -76,3 +76,10 @@ nts::Tristate nts::Utility::norGate(Tristate input1, Tristate input2) noexcept
         return (TRUE);
     return (FALSE);
 }
+
+nts::Tristate nts::Utility::notGate(Tristate input1) noexcept
+{
+    if (input1 == UNDEFINED)
+        return (UNDEFINED);
+    return (input1 == TRUE ? FALSE : TRUE);
+}

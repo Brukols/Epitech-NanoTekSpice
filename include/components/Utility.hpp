@@ -31,6 +31,7 @@ namespace nts
             static Tristate orGate(Tristate input1, Tristate input2) noexcept;
             static Tristate xorGate(Tristate input1, Tristate input2) noexcept;
             static Tristate norGate(Tristate input1, Tristate input2) noexcept;
+            static Tristate notGate(Tristate input1) noexcept;
 
         protected:
         private:

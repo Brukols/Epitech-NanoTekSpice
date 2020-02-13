@@ -8,6 +8,7 @@
 #include "../../include/components/4801.hpp"
 
 nts::C4801::C4801(const std::string &name) : AComponent(name, 24)
+// A voir après
 {
 
 }

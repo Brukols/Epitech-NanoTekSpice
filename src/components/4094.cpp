@@ -8,6 +8,7 @@
 #include "../../include/components/4094.hpp"
 
 nts::C4094::C4094(const std::string &name) : AComponent(name, 16)
+// A voir après
 {
 
 }

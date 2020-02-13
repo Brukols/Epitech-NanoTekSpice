@@ -8,6 +8,7 @@
 #include "../../include/components/2716.hpp"
 
 nts::C2716::C2716(const std::string &name) : AComponent(name, 24)
+// a voir après
 {
 
 }
