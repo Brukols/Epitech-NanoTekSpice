@@ -25,11 +25,15 @@ namespace nts
             void cutComment(std::string &line);
             bool isLinkPart(const std::string &line) const;
             bool isChipsetPart(const std::string &line) const;
+            void prompt();
         private:
             const std::vector<std::string> &_args;
             File _file;
             //const Circuit &_circuit;
 
+        private:
+            static void signalHandler(int signum);
+            void displayPrompt() const;
     };
 }
 
