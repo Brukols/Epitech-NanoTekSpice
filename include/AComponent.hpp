@@ -34,7 +34,8 @@ namespace nts
 
         protected:
 
-            void update(); // call method compute for all inputs
+            void updateInput(); // call method compute for all inputs
+            void updateOutput();
 
         protected:
 

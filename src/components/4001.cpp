@@ -6,10 +6,24 @@
 */
 
 #include "../../include/components/4001.hpp"
+#include "../../include/components/Input.hpp"
+#include "../../include/components/Output.hpp"
+#include "../../include/components/Utility.hpp"
 
 nts::C4001::C4001(const std::string &name) : AComponent(name, 12)
 {
-
+    _components[0] = new InputComponent("input1");
+    _components[1] = new InputComponent("input2");
+    _components[2] = new OutputComponent("Output1");
+    _components[3] = new OutputComponent("Output2");
+    _components[4] = new InputComponent("Input3");
+    _components[5] = new InputComponent("Input4");
+    _components[6] = new InputComponent("Input5");
+    _components[7] = new InputComponent("Input6");
+    _components[8] = new OutputComponent("Output3");
+    _components[9] = new OutputComponent("Output4");
+    _components[10] = new InputComponent("Input7");
+    _components[11] = new InputComponent("Input8");
 }
 
 nts::C4001::~C4001()
@@ -18,5 +32,12 @@ nts::C4001::~C4001()
 
 void nts::C4001::run()
 {
+    updateInput();
 
+    _tristatePin[2] = Utility::norGate(_tristatePin[0], _tristatePin[1]);
+    _tristatePin[3] = Utility::norGate(_tristatePin[4], _tristatePin[5]);
+    _tristatePin[8] = Utility::norGate(_tristatePin[6], _tristatePin[7]);
+    _tristatePin[9] = Utility::norGate(_tristatePin[10], _tristatePin[11]);
+
+    updateOutput();
 }

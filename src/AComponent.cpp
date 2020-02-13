@@ -6,6 +6,7 @@
 */
 
 #include "../include/AComponent.hpp"
+#include "../include/components/Utility.hpp"
 
 #include <iostream>
 
@@ -57,9 +58,32 @@ void nts::AComponent::dump() const
 }
 
 nts::Tristate nts::AComponent::compute(size_t pin)
+// Check if the second is note equal to 0
 {
     if (pin < 1 || pin > _pair.size())
         throw ComponentError("Invalid number of pins", "compute");
     _components[pin - 1]->setTristatePin(_pair[pin - 1].second, _tristatePin[pin - 1]);
     return (UNDEFINED);
+}
+
+void nts::AComponent::updateInput()
+{
+    for (size_t i = 0; i < _pair.size(); i++) {
+        if (_pair[i].second == 0)
+            continue;
+        if (Utility::isInput(_components[i])) {
+            compute(_pair[i].first);
+        }
+    }
+}
+
+void nts::AComponent::updateOutput()
+{
+    for (size_t i = 0; i < _pair.size(); i++) {
+        if (_pair[i].second == 0)
+            continue;
+        if (Utility::isOutput(_components[i])) {
+            compute(_pair[i].first);
+        }
+    }
 }

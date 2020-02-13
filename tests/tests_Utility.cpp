@@ -16,7 +16,7 @@ Test(isInput, test00, .init=redirect_all_std)
 
 Test(isInput, test01, .init=redirect_all_std)
 {
-    nts::IComponent *component = new nts::ClockComponent("Input");
+    nts::IComponent *component = new nts::OutputComponent("Input");
 
     cr_assert(nts::Utility::isInput(component) == false);
 }
