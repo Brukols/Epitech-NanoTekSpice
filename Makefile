@@ -18,6 +18,7 @@ SRC	=	src/nanotekspice.cpp	\
 		src/components/Output.cpp	\
 		src/components/Clock.cpp	\
 		src/components/True.cpp	\
+		src/components/Utility.cpp	\
 		src/AComponent.cpp	\
 		src/components/2716.cpp	\
 		src/components/4001.cpp	\
@@ -46,6 +47,7 @@ SRC_TESTS =		$(SRC)	\
 				tests/tests_setTristatePin.cpp	\
 				tests/tests_setLink.cpp	\
 				tests/tests_compute.cpp	\
+				tests/tests_Utility.cpp	\
 
 CXXFLAGS += 	-W -Wall -Wextra -Wshadow -Werror -I include\
 

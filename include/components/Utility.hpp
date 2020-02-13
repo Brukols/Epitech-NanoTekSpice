@@ -8,17 +8,27 @@
 #ifndef UTILITY_HPP
 #define UTILITY_HPP
 
-class Utility {
-    public:
+#include "../../include/interfaces/IComponent.hpp"
+#include "../../include/components/Input.hpp"
+#include "../../include/components/Output.hpp"
+#include "../../include/components/Clock.hpp"
+#include "../../include/components/True.hpp"
+#include "../../include/components/False.hpp"
 
-        static bool isInput();
-        static bool isOutput();
-        static bool isClock();
-        static bool isTrue();
-        static bool isFalse();
+namespace nts
+{
+    class Utility {
+        public:
 
-    protected:
-    private:
-};
+            static bool isInput(IComponent *) noexcept;
+            static bool isOutput(IComponent *) noexcept;
+            static bool isClock(IComponent *) noexcept;
+            static bool isTrue(IComponent *) noexcept;
+            static bool isFalse(IComponent *) noexcept;
+
+        protected:
+        private:
+    };
+} // namespace nts
 
 #endif /* !UTILITY_HPP */

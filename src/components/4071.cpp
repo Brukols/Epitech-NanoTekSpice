@@ -7,9 +7,8 @@
 
 #include "../../include/components/4071.hpp"
 
-nts::C4071::C4071(const std::string &name) : AComponent(name, 13)
+nts::C4071::C4071(const std::string &name) : AComponent(name, 12)
 {
-
 }
 
 nts::C4071::~C4071()

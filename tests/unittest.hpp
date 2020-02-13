@@ -22,6 +22,7 @@
 #include "../include/components/Input.hpp"
 #include "../include/components/Output.hpp"
 #include "../include/components/Clock.hpp"
+#include "../include/components/Utility.hpp"
 
 void redirect_all_std(void);
 

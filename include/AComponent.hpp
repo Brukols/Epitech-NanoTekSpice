@@ -34,6 +34,10 @@ namespace nts
 
         protected:
 
+            void update(); // call method compute for all inputs
+
+        protected:
+
             const std::string &_name;
             std::vector <Tristate> _tristatePin;
             std::vector <std::pair<size_t, size_t>> _pair;
