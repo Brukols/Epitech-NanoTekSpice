@@ -36,6 +36,13 @@ void nts::AComponent::setTristatePin(size_t nb, nts::Tristate pin)
     throw ComponentError("Invalid number of pins", "setTristatePin");
 }
 
+nts::Tristate nts::AComponent::getTristate(size_t pin)
+{
+    if (pin < 1 || pin > _tristatePin.size())
+        throw ComponentError("Invalid pin send", "getTristate");
+    return (_tristatePin[pin - 1]);
+}
+
 
 // OVERRIDE
 

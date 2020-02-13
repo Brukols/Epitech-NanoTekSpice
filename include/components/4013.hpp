@@ -9,6 +9,9 @@
 #define OOP_NANOTEKSPICE_2019_4013_HPP
 
 #include "../AComponent.hpp"
+#include "Output.hpp"
+#include "Input.hpp"
+#include "Clock.hpp"
 
 namespace nts
 {
@@ -18,6 +21,9 @@ namespace nts
             ~C4013();
 
             void run();
+        
+        private:
+            void computeFlipFlop(OutputComponent *q1, OutputComponent *q2, InputComponent *clock, InputComponent *reset, InputComponent *data, InputComponent *set);
     };
 }
 

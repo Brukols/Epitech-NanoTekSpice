@@ -41,6 +41,15 @@ nts::Tristate nts::Utility::andGate(Tristate input1, Tristate input2) noexcept
     return (FALSE);
 }
 
+nts::Tristate nts::Utility::nandGate(Tristate input1, Tristate input2) noexcept
+{
+    if (input1 == UNDEFINED && input2 == UNDEFINED)
+        return (UNDEFINED);
+    if (input1 == TRUE && input2 == TRUE)
+        return (FALSE);
+    return (TRUE);
+}
+
 nts::Tristate nts::Utility::orGate(Tristate input1, Tristate input2) noexcept
 {
     if (input1 == UNDEFINED && input2 == UNDEFINED)
