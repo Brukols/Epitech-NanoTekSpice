@@ -67,6 +67,14 @@ void nts::Parser::loop(const std::string &line)
 void nts::Parser::dump(const std::string &line)
 {
     (void)line;
+    std::cout << std::endl << "**** OUTPUT ****" << std::endl;
+    this->displayOutputs();
+    std::cout << std::endl << "**** INPUT ****" << std::endl;
+    this->displayInputs();
+    std::cout << std::endl << "**** COMPONENTS ****" << std::endl;
+    this->displayComponents();
+    std::cout << std::endl << "**** CLOCKS ****" << std::endl;
+    this->displayClock();
 }
 
 bool sortComponentsByName(std::unique_ptr<nts::IComponent> &cmp1, std::unique_ptr<nts::IComponent> &cmp2)
@@ -80,12 +88,6 @@ bool sortComponentsByName(std::unique_ptr<nts::IComponent> &cmp1, std::unique_pt
 
 void nts::Parser::display(const std::string &line)
 {
-    this->displayOutputs();
-    (void)line;
-}
-
-void nts::Parser::displayOutputs()
-{
     std::vector<std::unique_ptr<nts::IComponent>> &outputs = _circuit.getOutputs();
     std::sort(outputs.begin(), outputs.end(), sortComponentsByName);
     for_each(outputs.begin(), outputs.end(), [](const auto& o)
@@ -97,20 +99,32 @@ void nts::Parser::displayOutputs()
         else
             std::cout << oc->getTristate(1) << std::endl;
     });
+    (void)line;
+}
+
+void nts::Parser::displayOutputs()
+{
+    std::vector<std::unique_ptr<nts::IComponent>> &components = _circuit.getOutputs();
+    std::sort(components.begin(), components.end(), sortComponentsByName);
+    for_each(components.begin(), components.end(), [this](const auto& o)
+    {
+        auto *oc = static_cast<nts::AComponent*>(o.get());
+        std::cout << oc->getName() << std::endl;
+        oc->dump();
+        std::cout << std::endl;
+    });
 }
 
 void nts::Parser::displayInputs()
 {
-    std::vector<std::unique_ptr<nts::IComponent>> &inputs = _circuit.getInputs();
-    std::sort(inputs.begin(), inputs.end(), sortComponentsByName);
-    for_each(inputs.begin(), inputs.end(), [](const auto& o)
+    std::vector<std::unique_ptr<nts::IComponent>> &components = _circuit.getInputs();
+    std::sort(components.begin(), components.end(), sortComponentsByName);
+    for_each(components.begin(), components.end(), [this](const auto& o)
     {
-        auto *oc = static_cast<nts::InputComponent*>(o.get());
-        std::cout << oc->getName() << "=";
-        if (oc->getTristate(1) == -1)
-            std::cout << "U" << std::endl;
-        else
-            std::cout << oc->getTristate(1) << std::endl;
+        auto *oc = static_cast<nts::AComponent*>(o.get());
+        std::cout << oc->getName() << std::endl;
+        oc->dump();
+        std::cout << std::endl;
     });
 }
 
@@ -118,28 +132,24 @@ void nts::Parser::displayComponents()
 {
     std::vector<std::unique_ptr<nts::IComponent>> &components = _circuit.getComponents();
     std::sort(components.begin(), components.end(), sortComponentsByName);
-    for_each(components.begin(), components.end(), [](const auto& o)
+    for_each(components.begin(), components.end(), [this](const auto& o)
     {
         auto *oc = static_cast<nts::AComponent*>(o.get());
-        std::cout << oc->getName() << "=";
-        if (oc->getTristate(1) == -1)
-            std::cout << "U" << std::endl;
-        else
-            std::cout << oc->getTristate(1) << std::endl;
+        std::cout << oc->getName() << std::endl;
+        oc->dump();
+        std::cout << std::endl;
     });
 }
 
 void nts::Parser::displayClock()
 {
-    std::vector<std::unique_ptr<nts::IComponent>> &clocks = _circuit.getClocks();
-    std::sort(clocks.begin(), clocks.end(), sortComponentsByName);
-    for_each(clocks.begin(), clocks.end(), [](const auto& o)
+    std::vector<std::unique_ptr<nts::IComponent>> &components = _circuit.getClocks();
+    std::sort(components.begin(), components.end(), sortComponentsByName);
+    for_each(components.begin(), components.end(), [this](const auto& o)
     {
-        auto *oc = static_cast<nts::ClockComponent*>(o.get());
-        std::cout << oc->getName() << "=";
-        if (oc->getTristate(1) == -1)
-            std::cout << "U" << std::endl;
-        else
-            std::cout << oc->getTristate(1) << std::endl;
+        auto *oc = static_cast<nts::AComponent*>(o.get());
+        std::cout << oc->getName() << std::endl;
+        oc->dump();
+        std::cout << std::endl;
     });
 }

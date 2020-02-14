@@ -27,12 +27,13 @@ namespace nts
             const std::string &getName() const override;
             virtual void setTristatePin(size_t, Tristate) override;
             Tristate getTristate(size_t pin = 1);
+            const std::vector <IComponent*> &getLinkComponents() const;
+            const std::vector <std::pair<size_t, size_t>> &getLinkPin() const;
 
             // OVERRIDE
             void setLink(size_t pin, IComponent &other, size_t otherPin) override;
             void dump() const override;
             virtual nts::Tristate compute(size_t pin = 1) override;
-
         protected:
 
             void updateInput(); // call method compute for all inputs
@@ -43,7 +44,7 @@ namespace nts
             const std::string &_name;
             std::vector <Tristate> _tristatePin;
             std::vector <std::pair<size_t, size_t>> _pair;
-            std::vector <IComponent *> _components;
+            std::vector <IComponent *> _linkComponents;
     };
 }
 
