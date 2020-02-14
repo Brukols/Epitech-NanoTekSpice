@@ -11,7 +11,7 @@
 #include <iostream>
 
 nts::AComponent::AComponent(const std::string &name, size_t nbPin) : _name
-(name), _tristatePin(nbPin, Tristate::UNDEFINED), _linkComponents(nbPin, NULL)
+(name), _tristatePin(nbPin, Tristate::UNDEFINED), _components(nbPin, NULL)
 {
     for (size_t i = 0; i < nbPin; i++)
         _pair.push_back(std::pair<size_t, size_t>(i + 1, 0));
@@ -52,15 +52,15 @@ void nts::AComponent::setLink(size_t pin, nts::IComponent &other, size_t otherPi
     if (pin < 1 || pin > _pair.size())
         throw ComponentError("Invalid number of pins", "setLink");
     _pair[pin - 1].second = otherPin;
-    _linkComponents[pin - 1] = &other;
+    _components[pin - 1] = &other;
 }
 
 void nts::AComponent::dump() const
 {
-    for (size_t i = 0; i < _linkComponents.size(); i++) {
+    for (size_t i = 0; i < _components.size(); i++) {
         std::string status = (_tristatePin[i] == UNDEFINED ? "undefined" : (_tristatePin[i] == TRUE ? "true" : "false"));
 
-        std::cout << "Pin " << _pair[i].first << " which is " << status << " is linked to " << (!_linkComponents[i] ? "no component" : std::string("pin " + std::to_string(_pair[i].second) + " of " + _linkComponents[i]->getName())) << std::endl;
+        std::cout << "Pin " << _pair[i].first << " which is " << status << " is linked to " << (!_components[i] ? "no component" : std::string("pin " + std::to_string(_pair[i].second) + " of " + _components[i]->getName())) << std::endl;
     }
 }
 
@@ -69,7 +69,7 @@ nts::Tristate nts::AComponent::compute(size_t pin)
 {
     if (pin < 1 || pin > _pair.size())
         throw ComponentError("Invalid number of pins", "compute");
-    _linkComponents[pin - 1]->setTristatePin(_pair[pin - 1].second, _tristatePin[pin - 1]);
+    _components[pin - 1]->setTristatePin(_pair[pin - 1].second, _tristatePin[pin - 1]);
     return (UNDEFINED);
 }
 
@@ -78,7 +78,7 @@ void nts::AComponent::updateInput()
     for (size_t i = 0; i < _pair.size(); i++) {
         if (_pair[i].second == 0)
             continue;
-        if (Utility::isInput(_linkComponents[i])) {
+        if (Utility::isInput(_components[i])) {
             compute(_pair[i].first);
         }
     }
@@ -89,7 +89,7 @@ void nts::AComponent::updateOutput()
     for (size_t i = 0; i < _pair.size(); i++) {
         if (_pair[i].second == 0)
             continue;
-        if (Utility::isOutput(_linkComponents[i])) {
+        if (Utility::isOutput(_components[i])) {
             compute(_pair[i].first);
         }
     }
@@ -97,7 +97,7 @@ void nts::AComponent::updateOutput()
 
 const std::vector<nts::IComponent *> & nts::AComponent::getLinkComponents() const
 {
-    return _linkComponents;
+    return _components;
 }
 
 const std::vector<std::pair<size_t, size_t>> & nts::AComponent::getLinkPin() const

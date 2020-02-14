@@ -15,18 +15,33 @@
 void nts::Parser::prompt()
 {
     std::string command;
+
     std::unique_ptr<nts::IComponent>output = _circuit.createOutput("B");
     std::unique_ptr<nts::IComponent>output2 = _circuit.createOutput("A");
+    std::unique_ptr<nts::IComponent>input = _circuit.createInput("A");
     _circuit.addOutput(output2);
     _circuit.addOutput(output);
+    _circuit.addInput(input);
+
     signal(SIGINT, signalHandler);
     this->displayPrompt();
     while (std::getline(std::cin, command) && !_exit) {
+        this->cleanCommand(command);
         if (_cmdMap.find(command) != _cmdMap.end())
             (this->*_cmdMap[command])(command);
+        else if (command.find("=") != std::string::npos)
+            (this->*_cmdMap["changeValueInput"])(command);
+        else
+            std::cout << "Unknow command" << std::endl;
         if (_exit) break;
         this->displayPrompt();
     }
+}
+
+void nts::Parser::cleanCommand(std::string &command)
+{
+    command.erase(std::remove(command.begin(), command.end(), ' '), command.end());
+    command.erase(std::remove(command.begin(), command.end(), '\t'), command.end());
 }
 
 void nts::Parser::displayPrompt() const
@@ -46,9 +61,33 @@ void nts::Parser::exit(const std::string &line)
     _exit = true;
 }
 
+
 void nts::Parser::changeValueInput(const std::string &line)
 {
-    (void)line;
+    std::string name = line.substr(0, line.find("="));
+
+    int value = std::stoi(line.substr(line.find("=") + 1));
+
+    if (value < 0 || value > 1 || name.empty()) {
+        std::cout << "Change value of an input : \"name=value\" (Value must be 0 or 1)" << std::endl;
+        return;
+    }
+
+    std::vector<std::unique_ptr<IComponent>> &inputs = _circuit.getInputs();
+    auto const& selectedInputU = std::find_if(inputs.begin(), inputs.end(), [name](std::unique_ptr<IComponent> &o)
+    {
+        auto *oc = static_cast<nts::InputComponent*>(o.get());
+        if (oc->getName() == name)
+            return true;
+        return false;
+    });
+
+    if (selectedInputU == inputs.end()) {
+        std::cout << "Change value of an input : This input does not exist" << std::endl;
+        return;
+    }
+    auto *selectedInput = selectedInputU->get();
+    selectedInput->setTristatePin(1, static_cast<nts::Tristate>(value));
 }
 
 void nts::Parser::simulate(const std::string &line)

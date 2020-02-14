@@ -55,6 +55,7 @@ namespace nts
             void simulate(const std::string &);
             void loop(const std::string &);
             void dump(const std::string &);
+            void cleanCommand(std::string &);
     };
 }
 
