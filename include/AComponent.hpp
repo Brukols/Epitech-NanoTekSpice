@@ -26,7 +26,7 @@ namespace nts
             // GETTER AND SETTER
             const std::string &getName() const override;
             virtual void setTristatePin(size_t, Tristate) override;
-            Tristate getTristate(size_t pin = 1);
+            Tristate getTristate(size_t pin = 1) override;
             const std::vector <IComponent*> &getLinkComponents() const;
             const std::vector <std::pair<size_t, size_t>> &getLinkPin() const;
 

@@ -23,6 +23,8 @@
 #include "../include/components/Output.hpp"
 #include "../include/components/Clock.hpp"
 #include "../include/components/Utility.hpp"
+#include "../include/components/4001.hpp"
+#include "../include/components/4008.hpp"
 
 void redirect_all_std(void);
 

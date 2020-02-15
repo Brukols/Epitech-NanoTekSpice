@@ -49,6 +49,8 @@ SRC_TESTS =		$(SRC)	\
 				tests/tests_setLink.cpp	\
 				tests/tests_compute.cpp	\
 				tests/tests_Utility.cpp	\
+				tests/tests_C4001.cpp	\
+				tests/tests_C4008.cpp	\
 
 CXXFLAGS += 	-W -Wall -Wextra -Wshadow -Werror -I include\
 
