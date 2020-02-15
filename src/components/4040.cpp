@@ -53,18 +53,25 @@ void nts::C4040::changeOutputs(Tristate state)
 
 void nts::C4040::run()
 {
-    if (_tristatePin[10] == UNDEFINED)
-        return;
-
-    updateInput();
-
-    if (_tristatePin[9] == UNDEFINED && _tristatePin[10] == TRUE) {
-        changeOutputs(FALSE);
+    // if reset is undefined
+    if (_tristatePin[10] == UNDEFINED) {
+        changeOutputs(UNDEFINED);
+        updateOutput();
         return;
     }
 
-    if (_tristatePin[9] == TRUE && _tristatePin[10] == FALSE && _tristatePin[0] != UNDEFINED) {
+    updateInput();
+
+    // if reset is true
+    if (_tristatePin[10] == TRUE) {
+        changeOutputs(FALSE);
+        updateOutput();
+        return;
+    }
+
+    if (_tristatePin[9] == FALSE && _tristatePin[10] == FALSE && _tristatePin[0] != UNDEFINED) {
         changeOutputs((_tristatePin[0] == TRUE ? FALSE : TRUE));
+        updateOutput();
         return;
     }
 
