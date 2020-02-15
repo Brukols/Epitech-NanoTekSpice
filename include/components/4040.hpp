@@ -18,6 +18,9 @@ namespace nts
             ~C4040();
 
             void run();
+
+        private:
+            void changeOutputs(Tristate state);
     };
 }
 

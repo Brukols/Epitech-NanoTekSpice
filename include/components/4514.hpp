@@ -18,6 +18,11 @@ namespace nts
             ~C4514();
 
             void run();
+
+        private:
+            void changeOutputs(Tristate newState) noexcept;
+            void computeBinary() noexcept;
+            int getBinaryNb() const noexcept;
     };
 }
 

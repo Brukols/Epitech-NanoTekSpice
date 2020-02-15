@@ -18,6 +18,9 @@ namespace nts
             ~C4008();
 
             void run();
+
+        private:
+            Tristate sum(Tristate a, Tristate b, Tristate c) noexcept;
     };
 }
 
