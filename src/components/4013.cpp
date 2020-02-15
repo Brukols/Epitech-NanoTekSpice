@@ -69,7 +69,7 @@ void nts::C4013::run()
     updateInput();
 
     computeFlipFlop(0, 1, 2, 3, 4, 5);
-    computeFlipFlop(13, 12, 10, 9, 8, 7);
+    computeFlipFlop(12, 11, 10, 9, 8, 7);
 
     updateOutput();
 }
