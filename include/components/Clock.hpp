@@ -19,8 +19,6 @@ namespace nts
             ClockComponent(const std::string &name);
             ~ClockComponent();
 
-            Tristate compute(size_t pin) override;
-
         private:
 
     };

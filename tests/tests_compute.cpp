@@ -38,7 +38,7 @@ Test(compute, test02, .init=redirect_all_std)
     component->setTristatePin(1, nts::FALSE);
     component->compute();
     component2->dump();
-    cr_assert_stdout_eq_str("Pin 1 which is true is linked to no component\n");
+    cr_assert_stdout_eq_str("Pin 1 which is false is linked to no component\n");
 }
 
 Test(compute, test03, .init=redirect_all_std)

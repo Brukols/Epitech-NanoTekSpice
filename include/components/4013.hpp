@@ -23,7 +23,7 @@ namespace nts
             void run();
         
         private:
-            void computeFlipFlop(OutputComponent *q1, OutputComponent *q2, InputComponent *clock, InputComponent *reset, InputComponent *data, InputComponent *set);
+            void computeFlipFlop(size_t q1, size_t q2, size_t clock, size_t reset, size_t data, size_t set);
     };
 }
 

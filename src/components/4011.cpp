@@ -30,13 +30,10 @@ nts::C4011::C4011(const std::string &name) : AComponent(name, 14)
 
 nts::C4011::~C4011()
 {
-
 }
 
 void nts::C4011::run()
-{
-    updateInput();
-
+{ 
     _tristatePin[2] = Utility::nandGate(_tristatePin[0], _tristatePin[1]);
     _tristatePin[3] = Utility::nandGate(_tristatePin[4], _tristatePin[5]);
     _tristatePin[9] = Utility::nandGate(_tristatePin[7], _tristatePin[8]);
