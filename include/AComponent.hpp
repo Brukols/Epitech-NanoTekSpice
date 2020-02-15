@@ -41,7 +41,7 @@ namespace nts
 
         protected:
 
-            const std::string &_name;
+            const std::string _name;
             std::vector <Tristate> _tristatePin;
             std::vector <std::pair<size_t, size_t>> _pair;
             std::vector <IComponent *> _components;

@@ -56,6 +56,9 @@ SRC_TESTS =		$(SRC)	\
 				tests/tests_C4030.cpp	\
 				tests/tests_C4040.cpp	\
 				tests/tests_C4069.cpp	\
+				tests/tests_C4071.cpp	\
+				tests/tests_C4081.cpp	\
+				tests/tests_C4514.cpp	\
 
 CXXFLAGS += 	-W -Wall -Wextra -Wshadow -Werror -I include
 

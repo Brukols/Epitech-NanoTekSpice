@@ -81,11 +81,13 @@ void nts::C4514::computeBinary() noexcept
         "S0", "S1", "S2", "S3", "S4", "S5", "S6", "S7", "S8", "S9", "S10", "S11", "S12", "S13", "S14", "S15",
     };
     int i = 0;
-    for (; i < 15; i++) {
+    for (; i < 16; i++) {
         if (i == nb)
             break;
     }
     for (size_t it = 0; it < _components.size(); it++) {
+        if (!_components[it])
+            continue;
         if (_components[it]->getName() != names[i])
             continue;
         _tristatePin[it] = TRUE;
