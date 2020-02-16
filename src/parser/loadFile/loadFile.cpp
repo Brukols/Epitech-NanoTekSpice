@@ -55,7 +55,26 @@ bool nts::Parser::detectPartFile(std::string &line, size_t &section)
 
 void nts::Parser::parseLineLink(std::string &line)
 {
-    (void)line;
+    std::istringstream ss(line);
+    std::string linked1;
+    std::string linked2;
+    std::string pinLink1;
+    std::string pinLink2;
+
+    ss >> linked1;
+    ss >> linked2;
+
+    if (linked2.empty())
+        throw (FileError("Link : One or more links is missing", "File"));
+    if (linked1.find(':') == std::string::npos || linked2.find(':') == std::string::npos)
+        throw (FileError("Name or pin of linked component is missing for linkage", "File"));
+
+    pinLink1 = linked1.substr(linked1.find(':') + 1);
+    pinLink2 = linked2.substr(linked2.find(':') + 1);
+    linked1.erase(linked1.find(':'));
+    linked2.erase(linked2.find(':'));
+    
+    //_circuit.setLink(linked1.)
 }
 
 void nts::Parser::parseLineChipset(std::string &line)
@@ -67,6 +86,9 @@ void nts::Parser::parseLineChipset(std::string &line)
 
     ss >> type;
     ss >> name;
+
+    if (name.empty())
+        throw (FileError("Chipset : Type or name missing", "File"));
 
     newComponent = _circuit.createComponent(type, name);
 
