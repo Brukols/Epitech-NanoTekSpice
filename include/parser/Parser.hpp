@@ -26,11 +26,6 @@ namespace nts
             /* TYPEDEF */
             typedef void (nts::Parser::*execFunc)(const std::string &);
 
-            /* PARSE LINE FUNCTION */
-            void cutComment(std::string &line);
-            bool isLinkPart(const std::string &line) const;
-            bool isChipsetPart(const std::string &line) const;
-
             /* PROMPT FUNCTION */
             void prompt();
             static void signalHandler(int signum);
@@ -57,6 +52,14 @@ namespace nts
             void dump(const std::string &);
             void cleanCommand(std::string &);
             void loadFile();
+            /* PARSE LINE FUNCTION */
+            void cutComment(std::string &line);
+            bool isLinkPart(const std::string &line) const;
+            bool isChipsetPart(const std::string &line) const;
+
+            void parseLineChipset(std::string &line);
+            void parseLineLink(std::string &line);
+            void detectPartFile(std::string &line, size_t &section);
     };
 }
 

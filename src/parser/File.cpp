@@ -24,9 +24,9 @@ nts::File::~File()
     _fileStream.clear();
 }
 
-std::string nts::File::getDataLine()
+bool nts::File::getDataLine(std::string &line)
 {
-    std::string line;
-    std::getline(_fileStream, line);
-    return line;
+    if (std::getline(_fileStream, line))
+        return true;
+    return false;
 }

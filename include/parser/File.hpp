@@ -18,7 +18,7 @@ namespace nts
             File(const std::string &filepath);
             ~File();
 
-            std::string getDataLine();
+            bool getDataLine(std::string &line);
 
         private:
             const std::string &_filePath;

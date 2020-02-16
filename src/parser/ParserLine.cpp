@@ -12,7 +12,8 @@
 
 void nts::Parser::cutComment(std::string &line)
 {
-    line.erase(line.find("#"));
+    if (line.find('#') != std::string::npos)
+        line.erase(line.find("#"));
 }
 
 bool nts::Parser::isLinkPart(const std::string &line) const

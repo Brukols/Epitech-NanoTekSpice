@@ -19,6 +19,7 @@ SRC	=	src/nanotekspice.cpp	\
 		src/parser/prompt/loop/Loop.cpp	\
 		src/parser/prompt/simulate/Simulate.cpp	\
 		src/parser/prompt/Prompt.cpp	\
+		src/parser/loadFile/loadFile.cpp	\
 		src/components/False.cpp	\
 		src/components/Input.cpp	\
 		src/components/Output.cpp	\

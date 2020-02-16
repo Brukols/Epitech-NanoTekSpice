@@ -18,7 +18,7 @@ nts::Parser::Parser(std::vector<std::string> &args) try : _args(args), _file
     _cmdMap["loop"] = &nts::Parser::loop;
     _cmdMap["dump"] = &nts::Parser::dump;
     _exit = false;
-    //this->loadFile();
+    this->loadFile();
 } catch (const FileError &e)
 {
     throw e;
