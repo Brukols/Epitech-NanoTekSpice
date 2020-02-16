@@ -11,8 +11,14 @@ SRC	=	src/nanotekspice.cpp	\
 		src/errors/Errors.cpp	\
 		src/parser/File.cpp	\
 		src/parser/Parser.cpp	\
-		src/parser/Prompt.cpp	\
 		src/parser/ParserLine.cpp	\
+		src/parser/prompt/changeValueInput/ChangeValueInput.cpp	\
+		src/parser/prompt/display/Display.cpp	\
+		src/parser/prompt/dump/Dump.cpp	\
+		src/parser/prompt/exit/Exit.cpp	\
+		src/parser/prompt/loop/Loop.cpp	\
+		src/parser/prompt/simulate/Simulate.cpp	\
+		src/parser/prompt/Prompt.cpp	\
 		src/components/False.cpp	\
 		src/components/Input.cpp	\
 		src/components/Output.cpp	\
