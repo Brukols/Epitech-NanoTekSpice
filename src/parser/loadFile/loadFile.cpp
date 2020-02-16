@@ -7,6 +7,7 @@
 
 #include "../../../include/parser/Parser.hpp"
 #include <iostream>
+#include <sstream>
 
 void nts::Parser::loadFile()
 {
@@ -18,36 +19,38 @@ void nts::Parser::loadFile()
 
         if (line.empty())
             continue;
-
         try {
-            this->detectPartFile(line, section);
+            if (this->detectPartFile(line, section))
+                continue;
+            if (section == 1)
+                this->parseLineChipset(line);
+            else
+                this->parseLineLink(line);
         } catch (nts::NTSError const &e) {
             throw e;
         }
-        if (section == 1)
-            this->parseLineChipset(line);
-        else
-            this->parseLineLink(line);
-
-        std::cout << line << std::endl;
+        //std::cout << line << std::endl;
     }
 }
 
-void nts::Parser::detectPartFile(std::string &line, size_t &section)
+bool nts::Parser::detectPartFile(std::string &line, size_t &section)
 {
     if (line.find(".chipsets:") != std::string::npos) {
         if (section != 0)
             throw (FileError("Chipset Section already declared", "File"));
         else
             section = 1;
+        return true;
     } else if (line.find(".links:") != std::string::npos) {
         if (section != 1)
             throw (FileError("No Chipset Section", "File"));
         else
             section = 2;
+        return true;
     } else if (section == 0) {
         throw (FileError("No Chipset Section found", "File"));
     }
+    return false;
 }
 
 void nts::Parser::parseLineLink(std::string &line)
@@ -57,5 +60,22 @@ void nts::Parser::parseLineLink(std::string &line)
 
 void nts::Parser::parseLineChipset(std::string &line)
 {
-    (void)line;
+    std::istringstream ss(line);
+    std::string type;
+    std::string name;
+    std::unique_ptr<nts::IComponent> newComponent;
+
+    ss >> type;
+    ss >> name;
+
+    newComponent = _circuit.createComponent(type, name);
+
+    if (!type.compare("input"))
+        _circuit.addInput(newComponent);
+    else if (!type.compare("output"))
+        _circuit.addOutput(newComponent);
+    else if (!type.compare("clock"))
+        _circuit.addClock(newComponent);
+    else
+        _circuit.addComponent(newComponent);
 }
