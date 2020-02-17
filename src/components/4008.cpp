@@ -12,22 +12,6 @@
 
 nts::C4008::C4008(const std::string &name) : AComponent(name, 16)
 {
-    _components[0] = new InputComponent("A4");
-    _components[1] = new InputComponent("B3");
-    _components[2] = new InputComponent("A3");
-    _components[3] = new InputComponent("B2");
-    _components[4] = new InputComponent("A2");
-    _components[5] = new InputComponent("B1");
-    _components[6] = new InputComponent("A1");
-    _components[7] = NULL;
-    _components[8] = new InputComponent("C1");
-    _components[9] = new OutputComponent("S1");
-    _components[10] = new OutputComponent("S2");
-    _components[11] = new OutputComponent("S3");
-    _components[12] = new OutputComponent("S4");
-    _components[13] = new OutputComponent("CO");
-    _components[14] = new InputComponent("B4");
-    _components[15] = NULL;
 }
 
 nts::C4008::~C4008()

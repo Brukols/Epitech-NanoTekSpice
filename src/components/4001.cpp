@@ -12,19 +12,6 @@
 
 nts::C4001::C4001(const std::string &name) : AComponent(name, 13)
 {
-    _components[0] = new InputComponent("input1");
-    _components[1] = new InputComponent("input2");
-    _components[2] = new OutputComponent("Output1");
-    _components[3] = new OutputComponent("Output2");
-    _components[4] = new InputComponent("Input3");
-    _components[5] = new InputComponent("Input4");
-    _components[6] = nullptr;
-    _components[7] = new InputComponent("Input5");
-    _components[8] = new InputComponent("Input6");
-    _components[9] = new OutputComponent("Output3");
-    _components[10] = new OutputComponent("Output4");
-    _components[11] = new InputComponent("Input7");
-    _components[12] = new InputComponent("Input8");
 }
 
 nts::C4001::~C4001()

@@ -13,20 +13,6 @@
 
 nts::C4013::C4013(const std::string &name) : AComponent(name, 14)
 {
-    _components[0] = new OutputComponent("Q1");
-    _components[1] = new OutputComponent("!Q1");
-    _components[2] = new ClockComponent("CLOCk1");
-    _components[3] = new InputComponent("RESET1");
-    _components[4] = new InputComponent("DATA1");
-    _components[5] = new InputComponent("SET1");
-    _components[6] = NULL;
-    _components[7] = new InputComponent("SET2");
-    _components[8] = new InputComponent("DATA2");
-    _components[9] = new InputComponent("RESET2");
-    _components[10] = new ClockComponent("CLOCK2");
-    _components[11] = new OutputComponent("!Q2");
-    _components[12] = new OutputComponent("Q2");
-    _components[13] = NULL;
 }
 
 nts::C4013::~C4013()

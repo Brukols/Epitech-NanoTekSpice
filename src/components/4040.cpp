@@ -12,22 +12,6 @@
 
 nts::C4040::C4040(const std::string &name) : AComponent(name, 16)
 {
-    _components[0] = new OutputComponent("Q12");
-    _components[1] = new OutputComponent("Q6");
-    _components[2] = new OutputComponent("Q5");
-    _components[3] = new OutputComponent("Q7");
-    _components[4] = new OutputComponent("Q4");
-    _components[5] = new OutputComponent("Q3");
-    _components[6] = new OutputComponent("Q2");
-    _components[7] = NULL;
-    _components[8] = new OutputComponent("Q1");
-    _components[9] = new ClockComponent("C");
-    _components[10] = new InputComponent("R");
-    _components[11] = new OutputComponent("Q9");
-    _components[12] = new OutputComponent("Q8");
-    _components[13] = new OutputComponent("Q10");
-    _components[14] = new OutputComponent("Q11");
-    _components[15] = NULL;
 }
 
 nts::C4040::~C4040()
