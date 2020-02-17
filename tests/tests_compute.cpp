@@ -31,12 +31,10 @@ Test(compute, test01, .init=redirect_all_std)
 
 Test(compute, test02, .init=redirect_all_std)
 {
-    nts::IComponent *component = new nts::ClockComponent("true1");
     nts::IComponent *component2 = new nts::OutputComponent("output1");
 
-    component->setLink(1, *component2, 1);
-    component->setTristatePin(1, nts::FALSE);
-    component->compute();
+    component2->setTristatePin(1, nts::FALSE);
+    component2->compute();
     component2->dump();
     cr_assert_stdout_eq_str("Pin 1 which is false is linked to no component\n");
 }

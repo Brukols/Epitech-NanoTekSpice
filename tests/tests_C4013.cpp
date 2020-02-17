@@ -23,7 +23,7 @@ Test(C4013, test00)
     component->setLink(4, *reset, 1);
     component->setLink(5, *data, 1);
     component->setLink(6, *set, 1);
-    component->setTristatePin(3, nts::FALSE);
+    component->setTristatePin(3, nts::TRUE);
     component->setTristatePin(4, nts::FALSE);
     component->setTristatePin(5, nts::FALSE);
     component->setTristatePin(6, nts::FALSE);
@@ -56,7 +56,7 @@ Test(C4013, test01, .init=redirect_all_std)
     component->setLink(4, *reset, 1);
     component->setLink(5, *data, 1);
     component->setLink(6, *set, 1);
-    component->setTristatePin(3, nts::FALSE);
+    component->setTristatePin(3, nts::TRUE);
     component->setTristatePin(4, nts::FALSE);
     component->setTristatePin(5, nts::TRUE);
     component->setTristatePin(6, nts::FALSE);
@@ -89,7 +89,7 @@ Test(C4013, test02, .init=redirect_all_std)
     component->setLink(4, *reset, 1);
     component->setLink(5, *data, 1);
     component->setLink(6, *set, 1);
-    component->setTristatePin(3, nts::TRUE);
+    component->setTristatePin(3, nts::FALSE);
     component->setTristatePin(4, nts::FALSE);
     component->setTristatePin(5, nts::TRUE);
     component->setTristatePin(6, nts::FALSE);
@@ -222,7 +222,7 @@ Test(C4013, test06)
     component->setLink(10, *reset, 1);
     component->setLink(9, *data, 1);
     component->setLink(8, *set, 1);
-    component->setTristatePin(11, nts::FALSE);
+    component->setTristatePin(11, nts::TRUE);
     component->setTristatePin(10, nts::FALSE);
     component->setTristatePin(9, nts::FALSE);
     component->setTristatePin(8, nts::FALSE);
@@ -255,7 +255,7 @@ Test(C4013, test07, .init=redirect_all_std)
     component->setLink(10, *reset, 1);
     component->setLink(9, *data, 1);
     component->setLink(8, *set, 1);
-    component->setTristatePin(11, nts::FALSE);
+    component->setTristatePin(11, nts::TRUE);
     component->setTristatePin(10, nts::FALSE);
     component->setTristatePin(9, nts::TRUE);
     component->setTristatePin(8, nts::FALSE);
@@ -288,7 +288,7 @@ Test(C4013, test08, .init=redirect_all_std)
     component->setLink(10, *reset, 1);
     component->setLink(9, *data, 1);
     component->setLink(8, *set, 1);
-    component->setTristatePin(11, nts::TRUE);
+    component->setTristatePin(11, nts::FALSE);
     component->setTristatePin(10, nts::FALSE);
     component->setTristatePin(9, nts::TRUE);
     component->setTristatePin(8, nts::FALSE);
