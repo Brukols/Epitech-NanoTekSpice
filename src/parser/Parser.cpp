@@ -19,6 +19,10 @@ nts::Parser::Parser(std::vector<std::string> &args) try : _args(args), _file
     _cmdMap["dump"] = &nts::Parser::dump;
     _exit = false;
     this->loadFile();
+    this->parseArg();
+    _circuit.verifCircuit();
+    (this->*_cmdMap["simulate"])(std::string(""));
+    (this->*_cmdMap["display"])(std::string(""));
 } catch (const FileError &e)
 {
     throw e;

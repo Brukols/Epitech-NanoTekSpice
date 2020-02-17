@@ -31,13 +31,6 @@ void nts::Parser::loadFile()
             throw e;
         }
     }
-    try {
-        _circuit.verifCircuit();
-    } catch (nts::NTSError const &e) {
-        throw e;
-    }
-    (this->*_cmdMap["simulate"])(std::string(""));
-    (this->*_cmdMap["display"])(std::string(""));
 }
 
 bool nts::Parser::detectPartFile(std::string &line, size_t &section)
@@ -118,4 +111,12 @@ void nts::Parser::parseLineChipset(std::string &line)
 
     newComponent = _circuit.createComponent(type, name);
     _circuit.addCircuit(newComponent);
+}
+
+void nts::Parser::parseArg()
+{
+    for_each(_args.begin() + 2, _args.end(), [this](const std::string& command)
+    {
+        this->changeValueInput(command);
+    });
 }

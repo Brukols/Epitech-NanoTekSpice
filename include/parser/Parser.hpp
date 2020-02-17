@@ -60,6 +60,7 @@ namespace nts
             void parseLineChipset(std::string &line);
             void parseLineLink(std::string &line);
             bool detectPartFile(std::string &line, size_t &section);
+            void parseArg();
     };
 }
 
