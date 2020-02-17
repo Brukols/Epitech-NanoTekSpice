@@ -7,25 +7,13 @@
 
 #include "../../../../include/parser/Parser.hpp"
 #include "../../../../include/errors/Errors.hpp"
+#include "../../../../include/components/Utility.hpp"
 #include <iostream>
 #include <csignal>
 #include <cstdlib>
 #include <algorithm>
 
-void nts::Parser::dump(const std::string &line)
-{
-    (void)line;
-    std::cout << std::endl << "**** OUTPUT ****" << std::endl;
-    this->displayOutputs();
-    std::cout << std::endl << "**** INPUT ****" << std::endl;
-    this->displayInputs();
-    std::cout << std::endl << "**** COMPONENTS ****" << std::endl;
-    this->displayComponents();
-    std::cout << std::endl << "**** CLOCKS ****" << std::endl;
-    this->displayClock();
-}
-
-bool sortComponentsByName(std::unique_ptr<nts::IComponent> &cmp1, std::unique_ptr<nts::IComponent> &cmp2)
+bool sortComponentsMethodName(std::unique_ptr<nts::IComponent> &cmp1, std::unique_ptr<nts::IComponent> &cmp2)
 {
     std::string name1 = cmp1->getName();
     std::string name2 = cmp2->getName();
@@ -34,54 +22,70 @@ bool sortComponentsByName(std::unique_ptr<nts::IComponent> &cmp1, std::unique_pt
     return false;
 }
 
-void nts::Parser::displayOutputs()
+void nts::Parser::dump(const std::string &line)
 {
-    std::vector<std::unique_ptr<nts::IComponent>> &components = _circuit.getOutputs();
-    std::sort(components.begin(), components.end(), sortComponentsByName);
-    for_each(components.begin(), components.end(), [this](const auto& o)
+    (void)line;
+    std::vector<std::unique_ptr<nts::IComponent>> &circuit = _circuit.getCircuit();
+    std::sort(circuit.begin(), circuit.end(), sortComponentsMethodName);
+
+    std::cout << std::endl << "**** OUTPUT ****" << std::endl;
+    this->displayOutputs(circuit);
+    std::cout << std::endl << "**** INPUT ****" << std::endl;
+    this->displayInputs(circuit);
+    std::cout << std::endl << "**** COMPONENTS ****" << std::endl;
+    this->displayComponents(circuit);
+    std::cout << std::endl << "**** CLOCKS ****" << std::endl;
+    this->displayClock(circuit);
+}
+
+void nts::Parser::displayOutputs(std::vector<std::unique_ptr<nts::IComponent>> &circuit)
+{
+    for_each(circuit.begin(), circuit.end(), [this](const auto& o)
     {
-        auto *oc = static_cast<nts::AComponent*>(o.get());
-        std::cout << oc->getName() << std::endl;
-        oc->dump();
-        std::cout << std::endl;
+        if (nts::Utility::isOutput(o.get())) {
+            auto *oc = static_cast<nts::AComponent *>(o.get());
+            std::cout << oc->getName() << std::endl;
+            oc->dump();
+            std::cout << std::endl;
+        }
     });
 }
 
-void nts::Parser::displayInputs()
+void nts::Parser::displayInputs(std::vector<std::unique_ptr<nts::IComponent>> &circuit)
 {
-    std::vector<std::unique_ptr<nts::IComponent>> &components = _circuit.getInputs();
-    std::sort(components.begin(), components.end(), sortComponentsByName);
-    for_each(components.begin(), components.end(), [this](const auto& o)
+    for_each(circuit.begin(), circuit.end(), [this](const auto& o)
     {
-        auto *oc = static_cast<nts::AComponent*>(o.get());
-        std::cout << oc->getName() << std::endl;
-        oc->dump();
-        std::cout << std::endl;
+        if (nts::Utility::isInput(o.get())) {
+            auto *oc = static_cast<nts::AComponent *>(o.get());
+            std::cout << oc->getName() << std::endl;
+            oc->dump();
+            std::cout << std::endl;
+        }
     });
 }
 
-void nts::Parser::displayComponents()
+void nts::Parser::displayComponents(std::vector<std::unique_ptr<nts::IComponent>> &circuit)
 {
-    std::vector<std::unique_ptr<nts::IComponent>> &components = _circuit.getComponents();
-    std::sort(components.begin(), components.end(), sortComponentsByName);
-    for_each(components.begin(), components.end(), [this](const auto& o)
+    for_each(circuit.begin(), circuit.end(), [this](const auto& o)
     {
-        auto *oc = static_cast<nts::AComponent*>(o.get());
-        std::cout << oc->getName() << std::endl;
-        oc->dump();
-        std::cout << std::endl;
+        if (!nts::Utility::isInput(o.get()) && !nts::Utility::isOutput(o.get()) && !nts::Utility::isClock(o.get())) {
+            auto *oc = static_cast<nts::AComponent *>(o.get());
+            std::cout << oc->getName() << std::endl;
+            oc->dump();
+            std::cout << std::endl;
+        }
     });
 }
 
-void nts::Parser::displayClock()
+void nts::Parser::displayClock(std::vector<std::unique_ptr<nts::IComponent>> &circuit)
 {
-    std::vector<std::unique_ptr<nts::IComponent>> &components = _circuit.getClocks();
-    std::sort(components.begin(), components.end(), sortComponentsByName);
-    for_each(components.begin(), components.end(), [this](const auto& o)
+    for_each(circuit.begin(), circuit.end(), [this](const auto& o)
     {
-        auto *oc = static_cast<nts::AComponent*>(o.get());
-        std::cout << oc->getName() << std::endl;
-        oc->dump();
-        std::cout << std::endl;
+        if (nts::Utility::isClock(o.get())) {
+            auto *oc = static_cast<nts::AComponent *>(o.get());
+            std::cout << oc->getName() << std::endl;
+            oc->dump();
+            std::cout << std::endl;
+        }
     });
 }

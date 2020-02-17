@@ -8,6 +8,7 @@
 #include "../../../include/parser/Parser.hpp"
 #include <iostream>
 #include <sstream>
+#include <algorithm>
 
 void nts::Parser::loadFile()
 {
@@ -29,7 +30,6 @@ void nts::Parser::loadFile()
         } catch (nts::NTSError const &e) {
             throw e;
         }
-        //std::cout << line << std::endl;
     }
 }
 
@@ -58,8 +58,8 @@ void nts::Parser::parseLineLink(std::string &line)
     std::istringstream ss(line);
     std::string linked1;
     std::string linked2;
-    std::string pinLink1;
-    std::string pinLink2;
+    size_t pinLink1;
+    size_t pinLink2;
 
     ss >> linked1;
     ss >> linked2;
@@ -69,12 +69,12 @@ void nts::Parser::parseLineLink(std::string &line)
     if (linked1.find(':') == std::string::npos || linked2.find(':') == std::string::npos)
         throw (FileError("Name or pin of linked component is missing for linkage", "File"));
 
-    pinLink1 = linked1.substr(linked1.find(':') + 1);
-    pinLink2 = linked2.substr(linked2.find(':') + 1);
+    pinLink1 = std::stoi(linked1.substr(linked1.find(':') + 1));
+    pinLink2 = std::stoi(linked2.substr(linked2.find(':') + 1));
     linked1.erase(linked1.find(':'));
     linked2.erase(linked2.find(':'));
-    
-    //_circuit.setLink(linked1.)
+
+    _circuit.setLink(linked1, pinLink1, linked2, pinLink2);
 }
 
 void nts::Parser::parseLineChipset(std::string &line)
@@ -91,7 +91,9 @@ void nts::Parser::parseLineChipset(std::string &line)
         throw (FileError("Chipset : Type or name missing", "File"));
 
     newComponent = _circuit.createComponent(type, name);
+    _circuit.addCircuit(newComponent);
 
+    /*
     if (!type.compare("input"))
         _circuit.addInput(newComponent);
     else if (!type.compare("output"))
@@ -100,4 +102,6 @@ void nts::Parser::parseLineChipset(std::string &line)
         _circuit.addClock(newComponent);
     else
         _circuit.addComponent(newComponent);
+    _circuit.addCircuit(newComponent.get());
+     */
 }

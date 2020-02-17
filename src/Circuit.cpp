@@ -138,7 +138,7 @@ std::unique_ptr<nts::IComponent> nts::Circuit::createClock(const std::string
 {
     return (std::unique_ptr<nts::IComponent>(new ClockComponent(value)));
 }
-
+/*
 std::vector<std::unique_ptr<nts::IComponent>> &nts::Circuit::getOutputs()
 {
     return _outputs;
@@ -177,4 +177,23 @@ std::vector<std::unique_ptr<nts::IComponent>> &nts::Circuit::getClocks()
 void nts::Circuit::addClock(std::unique_ptr<nts::IComponent> & clock)
 {
     _clocks.push_back(std::move(clock));
+}
+*/
+
+std::vector<std::unique_ptr<nts::IComponent>> & nts::Circuit::getCircuit()
+{
+    return _total;
+}
+
+void nts::Circuit::addCircuit(std::unique_ptr <IComponent> &circuit)
+{
+    _total.push_back(std::move(circuit));
+}
+
+void nts::Circuit::setLink(const std::string &linked1, size_t pinLinked1, const std::string &linked2, size_t pinLinked2)
+{
+    (void)linked1;
+    (void)linked2;
+    (void)pinLinked1;
+    (void)pinLinked2;
 }

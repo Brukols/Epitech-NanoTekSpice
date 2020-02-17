@@ -40,10 +40,10 @@ namespace nts
 
         private:
             void displayPrompt() const;
-            void displayOutputs();
-            void displayInputs();
-            void displayComponents();
-            void displayClock();
+            void displayOutputs(std::vector<std::unique_ptr<nts::IComponent>> &circuit);
+            void displayInputs(std::vector<std::unique_ptr<nts::IComponent>> &circuit);
+            void displayComponents(std::vector<std::unique_ptr<nts::IComponent>> &circuit);
+            void displayClock(std::vector<std::unique_ptr<nts::IComponent>> &circuit);
             void exit(const std::string &);
             void display(const std::string &);
             void changeValueInput(const std::string &);

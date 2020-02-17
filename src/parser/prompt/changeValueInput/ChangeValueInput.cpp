@@ -7,6 +7,7 @@
 
 #include "../../../../include/parser/Parser.hpp"
 #include "../../../../include/errors/Errors.hpp"
+#include "../../../../include/components/Utility.hpp"
 #include <iostream>
 #include <csignal>
 #include <cstdlib>
@@ -14,6 +15,7 @@
 
 void nts::Parser::changeValueInput(const std::string &line)
 {
+    (void)line;
     std::string name = line.substr(0, line.find("="));
 
     int value = std::stoi(line.substr(line.find("=") + 1));
@@ -23,16 +25,18 @@ void nts::Parser::changeValueInput(const std::string &line)
         return;
     }
 
-    std::vector<std::unique_ptr<IComponent>> &inputs = _circuit.getInputs();
-    auto const& selectedInputU = std::find_if(inputs.begin(), inputs.end(), [name](std::unique_ptr<IComponent> &o)
+    std::vector<std::unique_ptr<IComponent>> &circuit = _circuit.getCircuit();
+    auto const& selectedInputU = std::find_if(circuit.begin(), circuit.end(), [name](std::unique_ptr<IComponent> &o)
     {
-        auto *oc = static_cast<nts::InputComponent*>(o.get());
-        if (oc->getName() == name)
-            return true;
+        if (nts::Utility::isInput(o.get())) {
+            auto *oc = static_cast<nts::AComponent *>(o.get());
+            if (oc->getName() == name)
+                return true;
+        }
         return false;
     });
 
-    if (selectedInputU == inputs.end()) {
+    if (selectedInputU == circuit.end()) {
         std::cout << "Change value of an input : This input does not exist" << std::endl;
         return;
     }

@@ -16,12 +16,14 @@ void nts::Parser::prompt()
 {
     std::string command;
 
+    /*
     std::unique_ptr<nts::IComponent>output = _circuit.createOutput("B");
     std::unique_ptr<nts::IComponent>output2 = _circuit.createOutput("A");
     std::unique_ptr<nts::IComponent>input = _circuit.createInput("A");
     _circuit.addOutput(output2);
     _circuit.addOutput(output);
     _circuit.addInput(input);
+*/
 
     signal(SIGINT, signalHandler);
     this->displayPrompt();
