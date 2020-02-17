@@ -74,8 +74,12 @@ void nts::Parser::parseLineLink(std::string &line)
     if (linked1.find(':') == std::string::npos || linked2.find(':') == std::string::npos)
         throw (FileError("Name or pin of linked component is missing for linkage", "File"));
 
-    pinLink1 = std::stoi(linked1.substr(linked1.find(':') + 1));
-    pinLink2 = std::stoi(linked2.substr(linked2.find(':') + 1));
+    try {
+        pinLink1 = std::stoi(linked1.substr(linked1.find(':') + 1));
+        pinLink2 = std::stoi(linked2.substr(linked2.find(':') + 1));
+    } catch (std::exception const &e) {
+        throw nts::NTSError("Pin Link must be number >= 0", "File");
+    }
     linked1.erase(linked1.find(':'));
     linked2.erase(linked2.find(':'));
     try {

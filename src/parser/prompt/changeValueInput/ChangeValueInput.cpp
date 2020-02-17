@@ -17,9 +17,13 @@ void nts::Parser::changeValueInput(const std::string &line)
 {
     (void)line;
     std::string name = line.substr(0, line.find("="));
+    int value = 0;
 
-    int value = std::stoi(line.substr(line.find("=") + 1));
-
+    try {
+        value = std::stoi(line.substr(line.find("=") + 1));
+    } catch (std::exception const &e) {
+        throw nts::NTSError("Pin Link must be number >= 0", "File");
+    }
     if (value < 0 || value > 1 || name.empty()) {
         throw nts::UserError("Change value of an input : \"name=value\" (Value must be 0 or 1)", "UserCommand");
     }
