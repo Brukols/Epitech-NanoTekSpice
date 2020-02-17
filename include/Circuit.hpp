@@ -46,7 +46,6 @@ namespace nts
             void addCircuit(std::unique_ptr<nts::IComponent> &circuit);
 
             void setLink(const std::string &linked1, size_t pinLinked1, const std::string &linked2, size_t pinLinked2);
-
             void verifCircuit();
 
             void simulate();
