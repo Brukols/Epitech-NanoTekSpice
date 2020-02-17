@@ -53,6 +53,14 @@ void nts::AComponent::setLink(size_t pin, nts::IComponent &other, size_t otherPi
         throw ComponentError("Invalid number of pins", "setLink");
     _pair[pin - 1].second = otherPin;
     _components[pin - 1] = &other;
+    if (nts::Utility::isOutput(this)) {
+        nts::OutputComponent *output = static_cast<nts::OutputComponent *>(this);
+        output->setIsLinked(true);
+    }
+    if (nts::Utility::isOutput(&other)) {
+        nts::OutputComponent *output2 = static_cast<nts::OutputComponent *>(&other);
+        output2->setIsLinked(true);
+    }
 }
 
 void nts::AComponent::dump() const

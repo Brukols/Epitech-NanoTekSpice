@@ -6,6 +6,7 @@
 */
 
 #include "../include/Circuit.hpp"
+#include "../include/components/Utility.hpp"
 #include <algorithm>
 #include <ostream>
 #include <iostream>
@@ -175,4 +176,18 @@ void nts::Circuit::setLink(const std::string &linked1, size_t pinLinked1, const 
     auto *selectedComponent1 = static_cast<nts::AComponent*>(selectedComponentU1->get());
     auto *selectedComponent2 = static_cast<nts::AComponent*>(selectedComponentU2->get());
     selectedComponent1->setLink(pinLinked1, *selectedComponent2, pinLinked2);
+}
+
+void nts::Circuit::verifCircuit()
+{
+    std::vector<std::unique_ptr<nts::IComponent>> &circuit = this->getCircuit();
+    for_each(circuit.begin(), circuit.end(), [](const auto& o)
+    {
+        if (nts::Utility::isOutput(o.get())) {
+            auto *oc = static_cast<nts::OutputComponent *>(o.get());
+            if (!oc->getIsLinked()) {
+                throw (nts::ComponentError("One or more output are not linked to anything", "Circuit"));
+            }
+        }
+    });
 }

@@ -42,30 +42,14 @@ namespace nts
 
             std::unique_ptr<IComponent> createComponent(const std::string &type, const std::string &value);
 
-            /* GETTERS AND SETTERS */
-            //std::vector<std::unique_ptr<nts::IComponent>> &getOutputs();
-            //void addOutput(std::unique_ptr<nts::IComponent> &output);
-
-            //std::vector<std::unique_ptr<nts::IComponent>> &getInputs();
-            //void addInput(std::unique_ptr<nts::IComponent> &input);
-
-            //std::vector<std::unique_ptr<nts::IComponent>> &getComponents();
-            //void addComponent(std::unique_ptr<nts::IComponent> &component);
-
-            //std::vector<std::unique_ptr<nts::IComponent>> &getClocks();
-            //void addClock(std::unique_ptr<nts::IComponent> &clock);
-
             std::vector<std::unique_ptr<nts::IComponent>> &getCircuit();
             void addCircuit(std::unique_ptr<nts::IComponent> &circuit);
 
             void setLink(const std::string &linked1, size_t pinLinked1, const std::string &linked2, size_t pinLinked2);
 
+            void verifCircuit();
         private:
-            //Circuit total
             std::vector<std::unique_ptr<nts::IComponent>> _total;
-            std::vector<std::unique_ptr<nts::IComponent>> _inputs;
-            std::vector<std::unique_ptr<nts::IComponent>> _components;
-            std::vector<std::unique_ptr<nts::IComponent>> _clocks;
         private:
             std::unique_ptr<IComponent> create4001(const std::string &value) const noexcept;
             std::unique_ptr<IComponent> create4008(const std::string &value) const noexcept;

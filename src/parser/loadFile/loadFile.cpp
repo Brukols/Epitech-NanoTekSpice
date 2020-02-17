@@ -31,6 +31,11 @@ void nts::Parser::loadFile()
             throw e;
         }
     }
+    try {
+        _circuit.verifCircuit();
+    } catch (nts::NTSError const &e) {
+        throw e;
+    }
 }
 
 bool nts::Parser::detectPartFile(std::string &line, size_t &section)

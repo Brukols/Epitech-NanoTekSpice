@@ -19,8 +19,12 @@ namespace nts
             OutputComponent(const std::string &name);
             ~OutputComponent();
 
-        private:
+            void setIsLinked(bool);
 
+            bool getIsLinked() const;
+
+        private:
+            bool _isLinked;
     };
 }
 
