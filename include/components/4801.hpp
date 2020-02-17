@@ -17,7 +17,7 @@ namespace nts
             C4801(const std::string &name);
             ~C4801();
 
-            void run();
+            void run() override;
     };
 }
 

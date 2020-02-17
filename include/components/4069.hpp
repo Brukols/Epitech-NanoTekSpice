@@ -17,7 +17,7 @@ namespace nts
             C4069(const std::string &name);
             ~C4069();
 
-            void run();
+            void run() override;
     };
 }
 

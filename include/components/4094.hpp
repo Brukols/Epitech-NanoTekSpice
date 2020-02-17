@@ -17,7 +17,7 @@ namespace nts
             C4094(const std::string &name);
             ~C4094();
 
-            void run();
+            void run() override;
 
         private:
             void changeOutputs(Tristate qn) noexcept;

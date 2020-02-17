@@ -17,7 +17,7 @@ namespace nts
             C4514(const std::string &name);
             ~C4514();
 
-            void run();
+            void run() override;
 
         private:
             void changeOutputs(Tristate newState) noexcept;

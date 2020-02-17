@@ -191,3 +191,23 @@ void nts::Circuit::verifCircuit()
         }
     });
 }
+
+void nts::Circuit::updateInput() noexcept
+{
+    std::for_each(_total.begin(), _total.end(), [](std::unique_ptr<IComponent> &component) {
+        if (nts::Utility::isInput(component.get())) {
+            component.get()->compute();
+        }
+    });
+}
+
+void nts::Circuit::simulate()
+{
+    updateInput();
+
+    std::for_each(_total.begin(), _total.end(), [](std::unique_ptr<IComponent> &component) {
+        if (!nts::Utility::isInput(component.get()) && !nts::Utility::isOutput(component.get())) {
+            component.get()->run();
+        }
+    });
+}

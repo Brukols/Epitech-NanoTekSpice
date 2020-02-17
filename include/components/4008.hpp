@@ -17,7 +17,7 @@ namespace nts
             C4008(const std::string &name);
             ~C4008();
 
-            void run();
+            void run() override;
 
         private:
             Tristate sum(Tristate a, Tristate b, Tristate c) noexcept;

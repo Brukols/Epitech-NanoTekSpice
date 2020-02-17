@@ -10,5 +10,5 @@
 void nts::Parser::simulate(const std::string &line)
 {
     (void)line;
-    //_circuit->simulate();
+    _circuit.simulate();
 }

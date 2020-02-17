@@ -31,6 +31,7 @@ namespace nts
         virtual const std::string &getName() const = 0;
         virtual void setTristatePin(size_t, Tristate) = 0;
         virtual Tristate getTristate(size_t pin = 1) = 0;
+        virtual void run() = 0;
     };
 }
 

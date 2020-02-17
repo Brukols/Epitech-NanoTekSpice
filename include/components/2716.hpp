@@ -17,7 +17,7 @@ namespace nts
             C2716(const std::string &name);
             ~C2716();
 
-            void run();
+            void run() override;
     };
 }
 

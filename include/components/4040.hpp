@@ -17,7 +17,7 @@ namespace nts
             C4040(const std::string &name);
             ~C4040();
 
-            void run();
+            void run() override;
 
         private:
             void changeOutputs(Tristate state);

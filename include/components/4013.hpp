@@ -20,7 +20,7 @@ namespace nts
             C4013(const std::string &name);
             ~C4013();
 
-            void run();
+            void run() override;
         
         private:
             void computeFlipFlop(size_t q1, size_t q2, size_t clock, size_t reset, size_t data, size_t set);

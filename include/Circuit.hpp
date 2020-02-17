@@ -48,6 +48,8 @@ namespace nts
             void setLink(const std::string &linked1, size_t pinLinked1, const std::string &linked2, size_t pinLinked2);
 
             void verifCircuit();
+
+            void simulate();
         private:
             std::vector<std::unique_ptr<nts::IComponent>> _total;
         private:
@@ -70,6 +72,8 @@ namespace nts
             std::unique_ptr<IComponent> createClock(const std::string &value)const noexcept;
             std::unique_ptr<IComponent> createTrue(const std::string &value) const noexcept;
             std::unique_ptr<IComponent> createFalse(const std::string &value) const noexcept;
+
+            void updateInput() noexcept;
     };
 }
 

@@ -17,7 +17,7 @@ namespace nts
             C4011(const std::string &name);
             ~C4011();
 
-            void run();
+            void run() override;
     };
 }
 

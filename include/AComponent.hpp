@@ -34,6 +34,8 @@ namespace nts
             void setLink(size_t pin, IComponent &other, size_t otherPin) override;
             void dump() const override;
             virtual nts::Tristate compute(size_t pin = 1) override;
+
+            void run() override {};
         protected:
 
             void updateInput(); // call method compute for all inputs
