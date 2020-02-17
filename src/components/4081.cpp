@@ -21,8 +21,6 @@ nts::C4081::~C4081()
 
 void nts::C4081::run()
 {
-    updateInput();
-
     _tristatePin[2] = Utility::andGate(_tristatePin[0], _tristatePin[1]);
     _tristatePin[3] = Utility::andGate(_tristatePin[4], _tristatePin[5]);
     _tristatePin[9] = Utility::andGate(_tristatePin[7], _tristatePin[8]);

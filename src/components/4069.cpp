@@ -21,8 +21,6 @@ nts::C4069::~C4069()
 
 void nts::C4069::run()
 {
-    updateInput();
-
     _tristatePin[1] = Utility::notGate(_tristatePin[0]);
     _tristatePin[3] = Utility::notGate(_tristatePin[2]);
     _tristatePin[5] = Utility::notGate(_tristatePin[4]);

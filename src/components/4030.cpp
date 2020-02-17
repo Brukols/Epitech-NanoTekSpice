@@ -21,8 +21,6 @@ nts::C4030::~C4030()
 
 void nts::C4030::run()
 {
-    updateInput();
-
     _tristatePin[2] = Utility::xorGate(_tristatePin[0], _tristatePin[1]);
     _tristatePin[3] = Utility::xorGate(_tristatePin[4], _tristatePin[5]);
     _tristatePin[9] = Utility::xorGate(_tristatePin[7], _tristatePin[8]);

@@ -69,11 +69,12 @@ nts::Tristate nts::AComponent::compute(size_t pin)
 {
     if (pin < 1 || pin > _pair.size())
         throw ComponentError("Invalid number of pins", "compute");
-    if (dynamic_cast<ClockComponent *>(_components[pin - 1])) {
+    if (Utility::isClock(_components[pin - 1])) {
         _tristatePin[pin - 1] = (_tristatePin[pin - 1] == UNDEFINED ? UNDEFINED : (_tristatePin[pin - 1] == FALSE ? TRUE : FALSE));
     }
-    _components[pin - 1]->setTristatePin(_pair[pin - 1].second, _tristatePin[pin - 1]);
-    return (UNDEFINED);
+    if (_components[pin - 1])
+        _components[pin - 1]->setTristatePin(_pair[pin - 1].second, _tristatePin[pin - 1]);
+    return (_tristatePin[pin - 1]);
 }
 
 void nts::AComponent::updateInput()

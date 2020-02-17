@@ -21,8 +21,6 @@ nts::C4071::~C4071()
 
 void nts::C4071::run()
 {
-    updateInput();
-
     _tristatePin[2] = Utility::orGate(_tristatePin[0], _tristatePin[1]);
     _tristatePin[3] = Utility::orGate(_tristatePin[4], _tristatePin[5]);
     _tristatePin[9] = Utility::orGate(_tristatePin[7], _tristatePin[8]);
