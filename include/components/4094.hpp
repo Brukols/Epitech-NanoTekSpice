@@ -18,6 +18,9 @@ namespace nts
             ~C4094();
 
             void run();
+
+        private:
+            void changeOutputs(Tristate qn) noexcept;
     };
 }
 
