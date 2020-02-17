@@ -92,16 +92,4 @@ void nts::Parser::parseLineChipset(std::string &line)
 
     newComponent = _circuit.createComponent(type, name);
     _circuit.addCircuit(newComponent);
-
-    /*
-    if (!type.compare("input"))
-        _circuit.addInput(newComponent);
-    else if (!type.compare("output"))
-        _circuit.addOutput(newComponent);
-    else if (!type.compare("clock"))
-        _circuit.addClock(newComponent);
-    else
-        _circuit.addComponent(newComponent);
-    _circuit.addCircuit(newComponent.get());
-     */
 }

@@ -23,7 +23,7 @@ void nts::Parser::prompt()
     _circuit.addOutput(output2);
     _circuit.addOutput(output);
     _circuit.addInput(input);
-*/
+    */
 
     signal(SIGINT, signalHandler);
     this->displayPrompt();

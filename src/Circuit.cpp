@@ -6,6 +6,9 @@
 */
 
 #include "../include/Circuit.hpp"
+#include <algorithm>
+#include <ostream>
+#include <iostream>
 
 nts::Circuit::Circuit()
 {
@@ -138,47 +141,6 @@ std::unique_ptr<nts::IComponent> nts::Circuit::createClock(const std::string
 {
     return (std::unique_ptr<nts::IComponent>(new ClockComponent(value)));
 }
-/*
-std::vector<std::unique_ptr<nts::IComponent>> &nts::Circuit::getOutputs()
-{
-    return _outputs;
-}
-
-void nts::Circuit::addOutput(std::unique_ptr<nts::IComponent> & output)
-{
-    _outputs.push_back(std::move(output));
-}
-
-std::vector<std::unique_ptr<nts::IComponent>> &nts::Circuit::getInputs()
-{
-    return _inputs;
-}
-
-void nts::Circuit::addInput(std::unique_ptr<nts::IComponent> & input)
-{
-    _inputs.push_back(std::move(input));
-}
-
-std::vector<std::unique_ptr<nts::IComponent>> &nts::Circuit::getComponents()
-{
-    return _components;
-}
-
-void nts::Circuit::addComponent(std::unique_ptr<nts::IComponent> & component)
-{
-    _components.push_back(std::move(component));
-}
-
-std::vector<std::unique_ptr<nts::IComponent>> &nts::Circuit::getClocks()
-{
-    return _clocks;
-}
-
-void nts::Circuit::addClock(std::unique_ptr<nts::IComponent> & clock)
-{
-    _clocks.push_back(std::move(clock));
-}
-*/
 
 std::vector<std::unique_ptr<nts::IComponent>> & nts::Circuit::getCircuit()
 {
@@ -192,8 +154,33 @@ void nts::Circuit::addCircuit(std::unique_ptr <IComponent> &circuit)
 
 void nts::Circuit::setLink(const std::string &linked1, size_t pinLinked1, const std::string &linked2, size_t pinLinked2)
 {
-    (void)linked1;
-    (void)linked2;
-    (void)pinLinked1;
-    (void)pinLinked2;
+    std::vector<std::unique_ptr<IComponent>> &circuit = this->getCircuit();
+    auto const& selectedComponentU1 = std::find_if(circuit.begin(), circuit.end(), [linked1](std::unique_ptr<IComponent> &o)
+    {
+        auto *oc = static_cast<nts::AComponent *>(o.get());
+        if (oc->getName() == linked1)
+            return true;
+        return false;
+    });
+
+    auto const& selectedComponentU2 = std::find_if(circuit.begin(), circuit.end(), [linked2](std::unique_ptr<IComponent> &o)
+    {
+        auto *oc = static_cast<nts::AComponent *>(o.get());
+        if (oc->getName() == linked2)
+            return true;
+        return false;
+    });
+    /* A changer avec throw */
+    if (selectedComponentU1 == circuit.end()) {
+        std::cout << "Change value of an input : This input does not exist" << std::endl;
+        return;
+    }
+    /* A changer avec throw */
+    if (selectedComponentU2 == circuit.end()) {
+        std::cout << "Change value of an input : This input does not exist" << std::endl;
+        return;
+    }
+    auto *selectedComponent1 = static_cast<nts::AComponent*>(selectedComponentU1->get());
+    auto *selectedComponent2 = static_cast<nts::AComponent*>(selectedComponentU2->get());
+    selectedComponent1->setLink(pinLinked1, *selectedComponent2, pinLinked2);
 }
