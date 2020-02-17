@@ -200,6 +200,12 @@ void nts::Circuit::verifCircuit()
                 throw (nts::ComponentError("One or more output are not linked to anything", "Circuit"));
             }
         }
+        if (dynamic_cast<InputComponent *>(o.get())) {
+            auto *oc = static_cast<nts::InputComponent *>(o.get());
+            if (oc->getTristate() == UNDEFINED) {
+                throw (nts::ComponentError("One or more input have undefined value", "Circuit"));
+            }
+        }
     });
 }
 
