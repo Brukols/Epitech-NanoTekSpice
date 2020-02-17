@@ -21,8 +21,7 @@ void nts::Parser::changeValueInput(const std::string &line)
     int value = std::stoi(line.substr(line.find("=") + 1));
 
     if (value < 0 || value > 1 || name.empty()) {
-        std::cout << "Change value of an input : \"name=value\" (Value must be 0 or 1)" << std::endl;
-        return;
+        throw nts::UserError("Change value of an input : \"name=value\" (Value must be 0 or 1)", "UserCommand");
     }
 
     std::vector<std::unique_ptr<IComponent>> &circuit = _circuit.getCircuit();
@@ -37,8 +36,7 @@ void nts::Parser::changeValueInput(const std::string &line)
     });
 
     if (selectedInputU == circuit.end()) {
-        std::cout << "Change value of an input : This input does not exist" << std::endl;
-        return;
+        throw nts::UserError("Change value of an input : This input does not exist", "UserCommand");
     }
     auto *selectedInput = selectedInputU->get();
     selectedInput->setTristatePin(1, static_cast<nts::Tristate>(value));

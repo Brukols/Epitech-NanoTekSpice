@@ -73,8 +73,11 @@ void nts::Parser::parseLineLink(std::string &line)
     pinLink2 = std::stoi(linked2.substr(linked2.find(':') + 1));
     linked1.erase(linked1.find(':'));
     linked2.erase(linked2.find(':'));
-
-    _circuit.setLink(linked1, pinLink1, linked2, pinLink2);
+    try {
+        _circuit.setLink(linked1, pinLink1, linked2, pinLink2);
+    } catch (nts::NTSError const &e) {
+        throw e;
+    }
 }
 
 void nts::Parser::parseLineChipset(std::string &line)
@@ -83,12 +86,24 @@ void nts::Parser::parseLineChipset(std::string &line)
     std::string type;
     std::string name;
     std::unique_ptr<nts::IComponent> newComponent;
+    std::vector<std::unique_ptr<nts::IComponent>> &circuit = _circuit.getCircuit();
 
     ss >> type;
     ss >> name;
 
     if (name.empty())
         throw (FileError("Chipset : Type or name missing", "File"));
+
+    auto const& nameFind = std::find_if(circuit.begin(), circuit.end(), [name](std::unique_ptr<IComponent> &o)
+    {
+        auto *oc = static_cast<nts::AComponent *>(o.get());
+        if (oc->getName() == name)
+            return true;
+        return false;
+    });
+
+    if (nameFind != circuit.end())
+        throw (FileError("Chipset : A chipset share the same name", "File"));
 
     newComponent = _circuit.createComponent(type, name);
     _circuit.addCircuit(newComponent);
