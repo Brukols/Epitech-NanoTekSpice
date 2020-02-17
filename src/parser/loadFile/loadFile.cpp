@@ -36,6 +36,8 @@ void nts::Parser::loadFile()
     } catch (nts::NTSError const &e) {
         throw e;
     }
+    (this->*_cmdMap["simulate"])(std::string(""));
+    (this->*_cmdMap["display"])(std::string(""));
 }
 
 bool nts::Parser::detectPartFile(std::string &line, size_t &section)
