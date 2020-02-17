@@ -49,9 +49,6 @@ NAME_TESTS	=	unit_test
 
 SRC_TESTS =		$(SRC)	\
 				tests/tests_redirect.cpp	\
-				tests/tests_cutComment.cpp	\
-				tests/tests_isLinkPart.cpp	\
-				tests/tests_isChipsetPart.cpp	\
 				tests/tests_setTristatePin.cpp	\
 				tests/tests_setLink.cpp	\
 				tests/tests_compute.cpp	\
@@ -66,6 +63,7 @@ SRC_TESTS =		$(SRC)	\
 				tests/tests_C4071.cpp	\
 				tests/tests_C4081.cpp	\
 				tests/tests_C4514.cpp	\
+				tests/tests_C4094.cpp	\
 
 CXXFLAGS += 	-W -Wall -Wextra -Wshadow -Werror -I include
 
