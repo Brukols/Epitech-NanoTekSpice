@@ -73,8 +73,11 @@ void nts::Parser::parseLineLink(std::string &line)
     pinLink2 = std::stoi(linked2.substr(linked2.find(':') + 1));
     linked1.erase(linked1.find(':'));
     linked2.erase(linked2.find(':'));
-
-    _circuit.setLink(linked1, pinLink1, linked2, pinLink2);
+    try {
+        _circuit.setLink(linked1, pinLink1, linked2, pinLink2);
+    } catch (nts::NTSError const &e) {
+        throw e;
+    }
 }
 
 void nts::Parser::parseLineChipset(std::string &line)

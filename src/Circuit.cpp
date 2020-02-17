@@ -170,16 +170,8 @@ void nts::Circuit::setLink(const std::string &linked1, size_t pinLinked1, const 
             return true;
         return false;
     });
-    /* A changer avec throw */
-    if (selectedComponentU1 == circuit.end()) {
-        std::cout << "Change value of an input : This input does not exist" << std::endl;
-        return;
-    }
-    /* A changer avec throw */
-    if (selectedComponentU2 == circuit.end()) {
-        std::cout << "Change value of an input : This input does not exist" << std::endl;
-        return;
-    }
+    if (selectedComponentU1 == circuit.end() || selectedComponentU2 == circuit.end())
+        throw nts::FileError("Try to link component that do not exist", "File");
     auto *selectedComponent1 = static_cast<nts::AComponent*>(selectedComponentU1->get());
     auto *selectedComponent2 = static_cast<nts::AComponent*>(selectedComponentU2->get());
     selectedComponent1->setLink(pinLinked1, *selectedComponent2, pinLinked2);
