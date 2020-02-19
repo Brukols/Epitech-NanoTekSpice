@@ -95,6 +95,11 @@ exec_test "./nanotekspice ressources/basics/nor.nts a=1 b=1 a2=0 b2=0 a3=1 b3=0 
 exec_test "./nanotekspice ressources/basics/not.nts i0=0 i1=0 i2=0 i3=0 i4=0 i5=0" "test08" "not"
 exec_test "./nanotekspice ressources/basics/or.nts a=1 b=1 a2=0 b2=0 a3=1 b3=0 a4=0 b4=1" "test09" "or"
 exec_test "./nanotekspice ressources/basics/xor.nts a=0 b=0 a2=0 b2=0 a3=0 b3=0 a4=0 b4=0" "test10" "xor"
+<<<<<<< HEAD
 exec_test "./nanotekspice ressources/primitives/5input_nand.nts a=0 b=0 c=0 d=0 e=0" "test14" "5input_nand"
+=======
+exec_test "./nanotekspice ressources/primitives/5input_and.nts a=0 b=0 c=0 d=0 e=0" "test11" "5input_and"
+exec_test "./nanotekspice ressources/primitives/5input_or.nts a=0 b=0 c=0 d=0 e=0" "test12" "5input_or"
+>>>>>>> 5890107be649b9262f0567e7cc5c42ebc5a4f382
 
 exit 0
