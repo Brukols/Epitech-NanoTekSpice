@@ -12,7 +12,6 @@
 #include <string>
 #include <vector>
 #include <map>
-#include "../components/Input.hpp"
 #include "File.hpp"
 #include "../Circuit.hpp"
 
@@ -25,7 +24,13 @@ namespace nts
 
             /* TYPEDEF */
             typedef void (nts::Parser::*execFunc)(const std::string &);
-
+            std::map<std::string, execFunc> _cmdMap;
+            void exit(const std::string &);
+            void display(const std::string &);
+            void changeValueInput(const std::string &);
+            void simulate(const std::string &);
+            void loop(const std::string &);
+            void dump(const std::string &);
             /* PROMPT FUNCTION */
             void prompt();
             static void signalHandler(int signum);
@@ -33,7 +38,6 @@ namespace nts
         private:
             const std::vector<std::string> &_args;
             File _file;
-            std::map<std::string, execFunc> _cmdMap;
             bool _exit;
             static bool _loop;
             Circuit _circuit;
@@ -44,12 +48,6 @@ namespace nts
             void displayInputs(std::vector<std::unique_ptr<nts::IComponent>> &circuit);
             void displayComponents(std::vector<std::unique_ptr<nts::IComponent>> &circuit);
             void displayClock(std::vector<std::unique_ptr<nts::IComponent>> &circuit);
-            void exit(const std::string &);
-            void display(const std::string &);
-            void changeValueInput(const std::string &);
-            void simulate(const std::string &);
-            void loop(const std::string &);
-            void dump(const std::string &);
             void cleanCommand(std::string &);
             void loadFile();
             /* PARSE LINE FUNCTION */

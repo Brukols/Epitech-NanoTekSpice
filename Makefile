@@ -66,6 +66,7 @@ SRC_TESTS =		$(SRC)	\
 				tests/tests_C4094.cpp	\
 				tests/tests_FileClass.cpp	\
 				tests/tests_ParserClass.cpp	\
+				tests/tests_Dump.cpp	\
 
 CXXFLAGS += 	-W -Wall -Wextra -Wshadow -Werror -I include
 
