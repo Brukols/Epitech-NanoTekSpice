@@ -54,8 +54,6 @@ namespace nts
             void loadFile();
             /* PARSE LINE FUNCTION */
             void cutComment(std::string &line);
-            bool isLinkPart(const std::string &line) const;
-            bool isChipsetPart(const std::string &line) const;
 
             void parseLineChipset(std::string &line);
             void parseLineLink(std::string &line);

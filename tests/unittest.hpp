@@ -26,6 +26,7 @@
 #include "../include/components/4001.hpp"
 #include "../include/components/4008.hpp"
 #include "../include/components/4011.hpp"
+#include "../include/parser/File.hpp"
 
 void redirect_all_std(void);
 
