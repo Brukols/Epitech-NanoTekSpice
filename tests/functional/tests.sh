@@ -88,7 +88,8 @@ exec_test "./nanotekspice ressources/basics/or_gate.nts a=0 b=1" "test00" "or_ga
 exec_test "./nanotekspice ressources/basics/and.nts a=0 b=0 a2=0 b2=0 a3=0 b3=0 a4=0 b4=0" "test01" "and"
 exec_test "./nanotekspice ressources/basics/adder.nts a=0 b=0 a2=0 b2=0 a3=0 b3=0 a4=0 b4=0 cin=0" "test02" "adder"
 exec_test "./nanotekspice ressources/basics/counter.nts clock=0 reset=1" "test03" "counter"
-exec_test "./nanotekspice ressources/basics/counter.nts clock=0 data=0 set=0 reset=0" "test04" "counter"
 exec_test "./nanotekspice ressources/basics/nand.nts a=1 b=1 a2=0 b2=0 a3=1 b3=0 a4=0 b4=1" "test06" "nand"
+exec_test "./nanotekspice ressources/basics/d_latch.nts clock=0 data=0 set=0 reset=0" "test04" "d_latch"
+exec_test "./nanotekspice ressources/basics/decoder.nts strobe=1 inhibit=1 a0=0 a1=0 a2=0 a3=0" "test05" "decoder"
 
 exit 0
