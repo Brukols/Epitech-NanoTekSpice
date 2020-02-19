@@ -1,0 +1,36 @@
+expected:
+# INITIALIZATION
+s=1
+s2=0
+s3=1
+s4=1
+# TEST01
+s=1
+s2=0
+s3=1
+s4=1
+s=1
+s2=0
+s3=0
+s4=1
+# TEST02
+s=1
+s2=0
+s3=0
+s4=1
+s=1
+s2=0
+s3=0
+s4=1
+command:
+# TEST01
+a3=0
+display
+simulate
+display
+# TEST02
+a4=1
+display
+simulate
+display
+exit
