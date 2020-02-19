@@ -102,9 +102,7 @@ void nts::AComponent::updateOutput()
     for (size_t i = 0; i < _pair.size(); i++) {
         if (_pair[i].second == 0)
             continue;
-        if (Utility::isOutput(_components[i]) || _components[i] == this) {
-            compute(_pair[i].first);
-        }
+        compute(_pair[i].first);
     }
 }
 
