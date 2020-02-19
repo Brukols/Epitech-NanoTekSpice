@@ -21,9 +21,19 @@ nts::C4001::~C4001()
 void nts::C4001::run()
 {
     _tristatePin[2] = Utility::norGate(_tristatePin[0], _tristatePin[1]);
+    updateOutput();
     _tristatePin[3] = Utility::norGate(_tristatePin[4], _tristatePin[5]);
+    updateOutput();
     _tristatePin[9] = Utility::norGate(_tristatePin[7], _tristatePin[8]);
+    updateOutput();
     _tristatePin[10] = Utility::norGate(_tristatePin[11], _tristatePin[12]);
-
+    updateOutput();
+    _tristatePin[2] = Utility::norGate(_tristatePin[0], _tristatePin[1]);
+    updateOutput();
+    _tristatePin[3] = Utility::norGate(_tristatePin[4], _tristatePin[5]);
+    updateOutput();
+    _tristatePin[9] = Utility::norGate(_tristatePin[7], _tristatePin[8]);
+    updateOutput();
+    _tristatePin[10] = Utility::norGate(_tristatePin[11], _tristatePin[12]);
     updateOutput();
 }
