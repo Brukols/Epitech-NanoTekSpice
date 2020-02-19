@@ -106,7 +106,11 @@ void nts::Parser::parseLineChipset(std::string &line)
     std::istringstream ss1(name);
     ss1 >> name;
     ss1 >> value;
-
+    if (value.empty()) {
+        ss >> value;
+        std::replace(value.begin(), value.end(), '(', ' ');
+        std::replace(value.begin(), value.end(), ')', ' ');
+    }
     if (!value.empty()) {
         try {
             tristate = std::stoi(value);
