@@ -185,6 +185,8 @@ void nts::Circuit::setLink(const std::string &linked1, size_t pinLinked1, const 
         selectedComponent1->setLink(pinLinked1, *selectedComponent2, pinLinked2);
     else if (nts::Utility::isInput(selectedComponent2))
         selectedComponent2->setLink(pinLinked2, *selectedComponent1, pinLinked1);
+    else if (selectedComponent1 == selectedComponent2)
+        selectedComponent2->setLink(pinLinked2, *selectedComponent1, pinLinked1);
     else
         selectedComponent1->setLink(pinLinked1, *selectedComponent2, pinLinked2);
 }
