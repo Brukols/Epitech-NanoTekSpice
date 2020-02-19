@@ -18,6 +18,14 @@ namespace nts
             ~C4017();
 
             void run() override;
+        
+        private:
+            void resetOutput() noexcept;
+            void nextOutput() noexcept;
+            void changeOutputs(nts::Tristate) noexcept;
+
+        private:
+            size_t _actualPin;
     };
 }
 
