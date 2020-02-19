@@ -44,7 +44,6 @@ void nts::C4040::run()
         return;
     }
 
-    updateInput();
 
     // if reset is true
     if (_tristatePin[10] == TRUE) {

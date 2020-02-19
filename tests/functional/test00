@@ -1,0 +1,30 @@
+expected:
+s=1
+# First test
+s=1
+# Second test
+s=0
+# Third test
+s=1
+# Fourth test
+s=1
+command:
+# First test
+a=1
+simulate
+display
+# Second test
+b=0
+a=0
+simulate
+display
+# Third test
+a=1
+b=0
+simulate
+display
+# Fourth test
+a=0
+b=1
+simulate
+display

@@ -98,6 +98,9 @@ tests_run: fclean $(OBJ_TESTS)
 	$(CC) -o $(NAME_TESTS) $(OBJ_TESTS) $(LDFLAGS) $(LDFLAGS_TESTS)
 	./$(NAME_TESTS)
 
+functional_tests: re
+	./tests/functional/tests.sh
+
 coverage:
 	sudo gcovr -e tests/
 
@@ -106,4 +109,4 @@ debug : re
 
 re: fclean all
 
-.PHONY: all clean fclean re tests_run rclean
+.PHONY: all clean fclean re tests_run rclean functional_tests

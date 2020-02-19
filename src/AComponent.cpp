@@ -80,8 +80,9 @@ nts::Tristate nts::AComponent::compute(size_t pin)
     if (Utility::isClock(this)) {
         _tristatePin[pin - 1] = (_tristatePin[pin - 1] == UNDEFINED ? UNDEFINED : (_tristatePin[pin - 1] == FALSE ? TRUE : FALSE));
     }
-    if (_components[pin - 1])
+    if (_components[pin - 1]) {
         _components[pin - 1]->setTristatePin(_pair[pin - 1].second, _tristatePin[pin - 1]);
+    }
     return (_tristatePin[pin - 1]);
 }
 
