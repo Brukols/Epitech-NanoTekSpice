@@ -44,6 +44,9 @@ std::unique_ptr<nts::IComponent> nts::Circuit::createComponent(const std::string
     map["false"] = &nts::Circuit::createFalse;
     map["clock"] = &nts::Circuit::createClock;
 
+    if (map.find(type) == map.end())
+        throw (nts::FileError("Unknow type component", "File"));
+
     return ((this->*map[type])(value));
 }
 

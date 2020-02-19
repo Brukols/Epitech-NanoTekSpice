@@ -89,14 +89,33 @@ void nts::Parser::parseLineChipset(std::string &line)
     std::istringstream ss(line);
     std::string type;
     std::string name;
+    std::string value;
     std::unique_ptr<nts::IComponent> newComponent;
     std::vector<std::unique_ptr<nts::IComponent>> &circuit = _circuit.getCircuit();
+    size_t tristate= -2;
 
     ss >> type;
     ss >> name;
 
     if (name.empty())
         throw (FileError("Chipset : Type or name missing", "File"));
+
+    std::replace(name.begin(), name.end(), '(', ' ');
+    std::replace(name.begin(), name.end(), ')', ' ');
+
+    std::istringstream ss1(name);
+    ss1 >> name;
+    ss1 >> value;
+
+    if (!value.empty()) {
+        try {
+            tristate = std::stoi(value);
+        } catch (std::exception const &e) {
+            throw nts::NTSError("Value for input must be 0 or 1", "File");
+        }
+        if (tristate != 1 && tristate != 0)
+            throw nts::NTSError("Value for input must be 0 or 1", "File");
+    }
 
     auto const& nameFind = std::find_if(circuit.begin(), circuit.end(), [name](std::unique_ptr<IComponent> &o)
     {
@@ -108,8 +127,15 @@ void nts::Parser::parseLineChipset(std::string &line)
 
     if (nameFind != circuit.end())
         throw (FileError("Chipset : A chipset share the same name", "File"));
-
-    newComponent = _circuit.createComponent(type, name);
+    try {
+        newComponent = _circuit.createComponent(type, name);
+    } catch (nts::NTSError const &e) {
+        throw e;
+    }
+    if (tristate == 1 || tristate == 0) {
+        auto *temp = static_cast<nts::AComponent *>(newComponent.get());
+        temp->setTristatePin(1, static_cast<nts::Tristate>(tristate));
+    }
     _circuit.addCircuit(newComponent);
 }
 
