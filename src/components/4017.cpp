@@ -54,10 +54,6 @@ void nts::C4017::run()
     if (getTristate(14) == FALSE) {
         setTristatePin(13, FALSE);
     }
-    // if CP1 (pin 13) is TRUE, the CPO (pin 14) cannot be FALSE
-    if (getTristate(13) == TRUE) {
-        setTristatePin(14, TRUE);
-    }
     if (getTristate(15) == TRUE)
         resetOutput();
     if (getTristate(13) == TRUE || getTristate(14) == TRUE) {
