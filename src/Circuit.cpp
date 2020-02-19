@@ -223,10 +223,20 @@ void nts::Circuit::updateInput() noexcept
 void nts::Circuit::simulate()
 {
     updateInput();
+    size_t nb_circuit = 0;
 
-    std::for_each(_total.begin(), _total.end(), [](std::unique_ptr<IComponent> &component) {
+    std::for_each(_total.begin(), _total.end(), [&nb_circuit](std::unique_ptr<IComponent> &component) {
         if (!nts::Utility::isInput(component.get()) && !nts::Utility::isOutput(component.get())) {
             component.get()->run();
+            nb_circuit++;
         }
     });
+    nb_circuit--;
+    for (; nb_circuit > 0; nb_circuit--) {
+        std::for_each(_total.begin(), _total.end(), [](std::unique_ptr<IComponent> &component) {
+            if (!nts::Utility::isInput(component.get()) && !nts::Utility::isOutput(component.get())) {
+                component.get()->run();
+            }
+        });
+    }
 }
