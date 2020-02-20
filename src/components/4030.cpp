@@ -21,20 +21,14 @@ nts::C4030::~C4030()
 
 void nts::C4030::run()
 {
-    _tristatePin[2] = Utility::xorGate(_tristatePin[0], _tristatePin[1]);
-    updateOutput();
-    _tristatePin[3] = Utility::xorGate(_tristatePin[4], _tristatePin[5]);
-    updateOutput();
-    _tristatePin[9] = Utility::xorGate(_tristatePin[7], _tristatePin[8]);
-    updateOutput();
-    _tristatePin[10] = Utility::xorGate(_tristatePin[11], _tristatePin[12]);
-    updateOutput();
-    _tristatePin[2] = Utility::xorGate(_tristatePin[0], _tristatePin[1]);
-    updateOutput();
-    _tristatePin[3] = Utility::xorGate(_tristatePin[4], _tristatePin[5]);
-    updateOutput();
-    _tristatePin[9] = Utility::xorGate(_tristatePin[7], _tristatePin[8]);
-    updateOutput();
-    _tristatePin[10] = Utility::xorGate(_tristatePin[11], _tristatePin[12]);
-    updateOutput();
+    for (size_t i = 0; i < 2; i++) {
+        _tristatePin[2] = Utility::xorGate(_tristatePin[0], _tristatePin[1]);
+        updateOutput();
+        _tristatePin[3] = Utility::xorGate(_tristatePin[4], _tristatePin[5]);
+        updateOutput();
+        _tristatePin[9] = Utility::xorGate(_tristatePin[7], _tristatePin[8]);
+        updateOutput();
+        _tristatePin[10] = Utility::xorGate(_tristatePin[11], _tristatePin[12]);
+        updateOutput();
+    }
 }

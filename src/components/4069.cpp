@@ -21,28 +21,18 @@ nts::C4069::~C4069()
 
 void nts::C4069::run()
 {
-    _tristatePin[1] = Utility::notGate(_tristatePin[0]);
-    updateOutput();
-    _tristatePin[3] = Utility::notGate(_tristatePin[2]);
-    updateOutput();
-    _tristatePin[5] = Utility::notGate(_tristatePin[4]);
-    updateOutput();
-    _tristatePin[7] = Utility::notGate(_tristatePin[8]);
-    updateOutput();
-    _tristatePin[9] = Utility::notGate(_tristatePin[10]);
-    updateOutput();
-    _tristatePin[11] = Utility::notGate(_tristatePin[12]);
-    updateOutput();
-    _tristatePin[1] = Utility::notGate(_tristatePin[0]);
-    updateOutput();
-    _tristatePin[3] = Utility::notGate(_tristatePin[2]);
-    updateOutput();
-    _tristatePin[5] = Utility::notGate(_tristatePin[4]);
-    updateOutput();
-    _tristatePin[7] = Utility::notGate(_tristatePin[8]);
-    updateOutput();
-    _tristatePin[9] = Utility::notGate(_tristatePin[10]);
-    updateOutput();
-    _tristatePin[11] = Utility::notGate(_tristatePin[12]);
-    updateOutput();
+    for (size_t i = 0; i < 2; i++) {
+        _tristatePin[1] = Utility::notGate(_tristatePin[0]);
+        updateOutput();
+        _tristatePin[3] = Utility::notGate(_tristatePin[2]);
+        updateOutput();
+        _tristatePin[5] = Utility::notGate(_tristatePin[4]);
+        updateOutput();
+        _tristatePin[7] = Utility::notGate(_tristatePin[8]);
+        updateOutput();
+        _tristatePin[9] = Utility::notGate(_tristatePin[10]);
+        updateOutput();
+        _tristatePin[11] = Utility::notGate(_tristatePin[12]);
+        updateOutput();
+    }
 }
