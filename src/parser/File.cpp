@@ -10,7 +10,7 @@
 
 nts::File::File(const std::string &filepath) : _filePath(filepath)
 {
-    _fileStream.open(_filePath);
+    _fileStream.open(_filePath, std::ios::in);
 
     if (!_fileStream.is_open()) {
         _fileStream.clear();
