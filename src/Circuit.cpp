@@ -223,6 +223,15 @@ void nts::Circuit::updateInput() noexcept
     });
 }
 
+void nts::Circuit::updateClock() noexcept
+{
+    std::for_each(_total.begin(), _total.end(), [](std::unique_ptr<IComponent> &component) {
+        if (nts::Utility::isClock(component.get())) {
+            component.get()->setTristatePin(1, (component.get()->getTristate() == UNDEFINED ? UNDEFINED : (component.get()->getTristate() == TRUE ? FALSE : TRUE )));
+        }
+    });
+}
+
 void nts::Circuit::simulate()
 {
     updateInput();
@@ -242,4 +251,5 @@ void nts::Circuit::simulate()
             }
         });
     }
+    updateClock();
 }

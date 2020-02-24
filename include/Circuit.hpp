@@ -73,6 +73,7 @@ namespace nts
             std::unique_ptr<IComponent> createFalse(const std::string &value) const noexcept;
 
             void updateInput() noexcept;
+            void updateClock() noexcept;
     };
 }
 
