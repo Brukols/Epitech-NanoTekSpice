@@ -234,7 +234,7 @@ void nts::Circuit::simulate()
             nb_circuit++;
         }
     });
-    nb_circuit--;
+    nb_circuit = (nb_circuit == 0 ? 0 : nb_circuit - 1);
     for (; nb_circuit > 0; nb_circuit--) {
         std::for_each(_total.begin(), _total.end(), [](std::unique_ptr<IComponent> &component) {
             if (!nts::Utility::isInput(component.get()) && !nts::Utility::isOutput(component.get())) {

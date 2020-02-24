@@ -5,7 +5,7 @@
 
 output x
 
-clock c
+false c
 
 .links:
 c:1 x:1
