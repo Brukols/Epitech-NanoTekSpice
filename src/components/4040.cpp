@@ -9,6 +9,7 @@
 #include "../../include/components/Input.hpp"
 #include "../../include/components/Output.hpp"
 #include "../../include/components/Utility.hpp"
+#include <bitset>
 
 nts::C4040::C4040(const std::string &name) : AComponent(name, 16)
 {
@@ -60,9 +61,36 @@ void nts::C4040::simulateCircuit() noexcept
     updateOutput();
 }
 
+#include <iostream>
+void nts::C4040::countBinary(int nb) noexcept
+{
+    std::string str = std::bitset<12>(nb).to_string();
+    const int pins[] = {
+        1, 15, 14, 12, 13, 4, 2, 3, 5, 6, 7, 9
+    };
+
+    for (size_t i = 0; i < 12; i++) {
+        setTristatePin(pins[i], (str[i] == '0' ? FALSE : TRUE));
+    }
+}
+
 void nts::C4040::run()
 {
-    for (size_t i = 0; i < 3; i++) {
-        simulateCircuit();
+    static int i = 0;
+
+    if (getTristate(11) == UNDEFINED) {
+        changeOutputs(UNDEFINED);
+        updateOutput();
+        return;
     }
+    if (getTristate(11) == TRUE) {
+        changeOutputs(FALSE);
+        updateOutput();
+        i = 0;
+        return;
+    }
+    if (getTristate(10) == FALSE)
+        i = (i == 4095 ? 0 : i + 1);
+    countBinary(i);
+    updateOutput();
 }

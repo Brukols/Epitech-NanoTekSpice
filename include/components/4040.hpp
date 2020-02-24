@@ -22,6 +22,7 @@ namespace nts
         private:
             void changeOutputs(Tristate state);
             void simulateCircuit() noexcept;
+            void countBinary(int nb) noexcept;
     };
 }
 
