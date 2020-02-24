@@ -54,11 +54,9 @@ SRC_TESTS =		$(SRC)	\
 				tests/tests_compute.cpp	\
 				tests/tests_Utility.cpp	\
 				tests/tests_C4001.cpp	\
-				tests/tests_C4008.cpp	\
 				tests/tests_C4011.cpp	\
 				tests/tests_C4013.cpp	\
 				tests/tests_C4030.cpp	\
-				tests/tests_C4040.cpp	\
 				tests/tests_C4069.cpp	\
 				tests/tests_C4071.cpp	\
 				tests/tests_C4081.cpp	\
