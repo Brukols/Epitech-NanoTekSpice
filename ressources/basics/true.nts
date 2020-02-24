@@ -1,0 +1,9 @@
+# Admiral Business Machines 1954-2042
+# 4 bits adder
+
+.chipsets:
+true		cin
+output		cout
+
+.links:
+cin:1   cout:1

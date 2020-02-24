@@ -1,0 +1,10 @@
+expected:
+cout=0
+# -----------TEST 0 --------------- #
+cout=0
+command:
+# -----------TEST 0 --------------- #
+cin=0
+simulate
+display
+exit

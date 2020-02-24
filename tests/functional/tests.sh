@@ -102,5 +102,7 @@ exec_test "./nanotekspice ressources/primitives/5input_nand.nts a=1 b=1 c=1 d=1 
 exec_test "./nanotekspice ressources/primitives/5input_nor.nts a=1 b=1 c=1 d=1 e=1" "test15" "5input_nor"
 exec_test "./nanotekspice ressources/basics/johnson.nts clockup=0 master_reset=1" "test16" "johnson"
 exec_test "./nanotekspice ressources/basics/direct_connection.nts cin=1" "test17" "direct_connection"
+exec_test "./nanotekspice ressources/basics/true.nts" "test18" "true"
+exec_test "./nanotekspice ressources/basics/false.nts" "test19" "false"
 
 exit 0
