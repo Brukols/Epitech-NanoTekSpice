@@ -1,43 +1,56 @@
 expected:
-cout=0
-s=0
-s2=0
-s3=0
-s4=0
-# TEST 01
-cout=1
-s=1
-s2=0
-s3=1
-s4=0
-# TEST 02
-cout=1
-s=0
-s2=0
-s3=0
-s4=0
-# TEST 03
 cout=1
 s=1
 s2=1
 s3=1
 s4=1
+# TEST 01
+cout=1
+s=0
+s2=0
+s3=0
+s4=0
+# TEST 02
+cout=1
+s=0
+s2=1
+s3=1
+s4=1
+# TEST 03
+cout=1
+s=1
+s2=1
+s3=0
+s4=0
+# TEST 04
+cout=1
+s=0
+s2=1
+s3=0
+s4=0
 command:
 # TEST 01
-a=1
+a=0
+a2=0
+a3=0
+a4=0
+simulate
+display
+# TEST 02
 a2=1
 a3=1
 a4=1
 simulate
 display
-# TEST 02
-b=1
-b2=1
-b3=1
-b4=1
-simulate
-display
 # TEST 03
-cin=1
+a=1
+a2=0
+b2=0
+b4=0
 simulate
 display
+# TEST 04
+cin=0
+simulate
+display
+exit
