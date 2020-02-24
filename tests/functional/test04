@@ -19,7 +19,7 @@ nout=1
 out=1
 command:
 #----------------TEST 01---------------#
-clock=0
+clock=1
 data=1
 simulate
 display
