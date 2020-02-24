@@ -1,41 +1,41 @@
 expected:
-# INITIALIZATION
+#------------INITIALIZATION------------#
 nout=1
 out=0
-# TEST 01
+#----------------TEST 01---------------#
 nout=0
 out=1
-# TEST 02
+#----------------TEST 02---------------#
 nout=0
 out=1
-# TEST 03
+#----------------TEST 03---------------#
 nout=1
 out=0
-# TEST 04
+#----------------TEST 04---------------#
 nout=0
 out=1
-# TEST 05
+#----------------TEST 05---------------#
 nout=1
 out=1
 command:
-# TEST 01
+#----------------TEST 01---------------#
 clock=0
 data=1
 simulate
 display
-# TEST 02
+#----------------TEST 02---------------#
 simulate
 display
-# TEST 03
+#----------------TEST 03---------------#
 reset=1
 simulate
 display
-# TEST 04
+#----------------TEST 04---------------#
 reset=0
 set=1
 simulate
 display
-# TEST 05
+#----------------TEST 05---------------#
 reset=1
 set=1
 simulate

@@ -22,8 +22,10 @@ nts::Tristate nts::C4008::sum(Tristate a, Tristate b, Tristate c) noexcept
 {
     Tristate sum = FALSE;
 
-    if (a == UNDEFINED || b == UNDEFINED || c == UNDEFINED)
+    if (a == UNDEFINED || b == UNDEFINED || c == UNDEFINED) {
+        _tristatePin[13] = UNDEFINED;
         return (UNDEFINED);
+    }
     _tristatePin[13] = FALSE;
     if (a == TRUE)
         sum = TRUE;
@@ -41,11 +43,11 @@ void nts::C4008::run()
     for (int i = 0; i < 3; i++) {
         _tristatePin[9] = sum(_tristatePin[6], _tristatePin[5], _tristatePin[8]);
         updateOutput();
-        _tristatePin[10] = sum(_tristatePin[4], _tristatePin[3], _tristatePin[9]);
+        _tristatePin[10] = sum(_tristatePin[4], _tristatePin[3], _tristatePin[13]);
         updateOutput();
-        _tristatePin[11] = sum(_tristatePin[2], _tristatePin[1], _tristatePin[10]);
+        _tristatePin[11] = sum(_tristatePin[2], _tristatePin[1], _tristatePin[13]);
         updateOutput();
-        _tristatePin[12] = sum(_tristatePin[0], _tristatePin[14], _tristatePin[11]);
+        _tristatePin[12] = sum(_tristatePin[0], _tristatePin[14], _tristatePin[13]);
         updateOutput();
     }
 }
