@@ -50,8 +50,10 @@ void nts::C4013::computeFlipFlop(size_t q1, size_t q2, size_t clock, size_t rese
 
 void nts::C4013::run()
 {
-    computeFlipFlop(0, 1, 2, 3, 4, 5);
-    computeFlipFlop(12, 11, 10, 9, 8, 7);
-
-    updateOutput();
+    for (size_t i = 0; i < 3; i++) {
+        computeFlipFlop(0, 1, 2, 3, 4, 5);
+        updateOutput();
+        computeFlipFlop(12, 11, 10, 9, 8, 7);
+        updateOutput();
+    }
 }
