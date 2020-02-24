@@ -35,7 +35,7 @@ void nts::C4040::changeOutputs(Tristate state)
     _tristatePin[14] = state;
 }
 
-void nts::C4040::run()
+void nts::C4040::simulateCircuit() noexcept
 {
     // if reset is undefined
     if (_tristatePin[10] == UNDEFINED) {
@@ -43,7 +43,6 @@ void nts::C4040::run()
         updateOutput();
         return;
     }
-
 
     // if reset is true
     if (_tristatePin[10] == TRUE) {
@@ -59,4 +58,11 @@ void nts::C4040::run()
     }
 
     updateOutput();
+}
+
+void nts::C4040::run()
+{
+    for (size_t i = 0; i < 3; i++) {
+        simulateCircuit();
+    }
 }

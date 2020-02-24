@@ -21,6 +21,7 @@ namespace nts
 
         private:
             void changeOutputs(Tristate state);
+            void simulateCircuit() noexcept;
     };
 }
 

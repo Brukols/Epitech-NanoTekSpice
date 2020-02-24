@@ -24,10 +24,8 @@ void nts::C4094::changeOutputs(Tristate qn) noexcept
         setTristatePin(qns[i], qn);
 }
 
-void nts::C4094::run()
+void nts::C4094::simulateCircuit() noexcept
 {
-    updateInput();
-
     if (getTristate(3) == TRUE && getTristate(15) == FALSE) {
         changeOutputs(UNDEFINED);
         setTristatePin(9, getTristate(12));
@@ -70,5 +68,12 @@ void nts::C4094::run()
         setTristatePin(10, getTristate(12));
         updateOutput();
         return;
+    }
+}
+
+void nts::C4094::run()
+{
+    for (size_t i = 0; i < 3; i++) {
+        simulateCircuit();
     }
 }
