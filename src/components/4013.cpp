@@ -19,7 +19,7 @@ nts::C4013::~C4013()
 {
 
 }
-
+#include <iostream>
 void nts::C4013::computeFlipFlop(size_t q1, size_t q2, size_t clock, size_t reset, size_t data, size_t set)
 {
     if (_tristatePin[set] == TRUE && _tristatePin[reset] == TRUE) {
@@ -37,12 +37,13 @@ void nts::C4013::computeFlipFlop(size_t q1, size_t q2, size_t clock, size_t rese
         _tristatePin[q2] = TRUE;
         return;
     }
-    if (_tristatePin[clock] == TRUE && _tristatePin[data] == TRUE) {
+    std::cout << _clockStates[clock] << std::endl;
+    if (_clockStates[clock] == LOW_TO_HIGH && _tristatePin[data] == TRUE) {
         _tristatePin[q1] = TRUE;
         _tristatePin[q2] = FALSE;
         return;
     }
-    if (_tristatePin[clock] == TRUE) {
+    if (_clockStates[clock] == LOW_TO_HIGH) {
         _tristatePin[q1] = FALSE;
         _tristatePin[q2] = TRUE;
     }

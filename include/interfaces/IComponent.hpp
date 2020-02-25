@@ -18,6 +18,12 @@ namespace nts
         FALSE = false
     };
 
+    enum clockState {
+        HIGH_TO_LOW,
+        LOW_TO_HIGH,
+        INITALIZATION
+    };
+
     class IComponent
     {
     public:
@@ -32,6 +38,9 @@ namespace nts
         virtual void setTristatePin(size_t, Tristate) = 0;
         virtual Tristate getTristate(size_t pin = 1) = 0;
         virtual void run() = 0;
+        virtual void setClockState(size_t pin = 1) = 0;
+        virtual clockState getClockState(size_t pin = 1) const = 0;
+        virtual void computeClock(size_t pin = 1) = 0;
     };
 }
 

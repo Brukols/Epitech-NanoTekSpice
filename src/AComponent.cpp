@@ -11,7 +11,7 @@
 #include <iostream>
 
 nts::AComponent::AComponent(const std::string &name, size_t nbPin) : _name
-(name), _tristatePin(nbPin, Tristate::UNDEFINED), _components(nbPin, NULL)
+(name), _tristatePin(nbPin, Tristate::UNDEFINED), _components(nbPin, NULL), _clockStates(nbPin, INITALIZATION)
 {
     for (size_t i = 0; i < nbPin; i++)
         _pair.push_back(std::pair<size_t, size_t>(i + 1, 0));
@@ -111,4 +111,26 @@ const std::vector<nts::IComponent *> & nts::AComponent::getLinkComponents() cons
 const std::vector<std::pair<size_t, size_t>> & nts::AComponent::getLinkPin() const
 {
     return _pair;
+}
+
+void nts::AComponent::setClockState(size_t pin)
+{
+    if (getTristate(pin) == FALSE) {
+        _clockStates[pin - 1] = LOW_TO_HIGH;
+    }
+    if (getTristate(pin) == TRUE) {
+        _clockStates[pin - 1] = HIGH_TO_LOW;
+    }
+}
+
+nts::clockState nts::AComponent::getClockState(size_t pin) const
+{
+    return (_clockStates[pin - 1]);
+}
+
+void nts::AComponent::computeClock(size_t pin)
+{
+    if (_components[pin - 1]) {
+        _components[pin - 1]->setClockState(_pair[pin - 1].second);
+    }
 }

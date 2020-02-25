@@ -36,6 +36,10 @@ namespace nts
             virtual nts::Tristate compute(size_t pin = 1) override;
 
             void run() override {};
+
+            void setClockState(size_t pin = 1) override;
+            clockState getClockState(size_t pin = 1) const override;
+            void computeClock(size_t pin = 1) override;
         protected:
 
             void updateInput(); // call method compute for all inputs
@@ -47,6 +51,7 @@ namespace nts
             std::vector <Tristate> _tristatePin;
             std::vector <std::pair<size_t, size_t>> _pair;
             std::vector <IComponent *> _components;
+            std::vector <clockState> _clockStates;
     };
 }
 
