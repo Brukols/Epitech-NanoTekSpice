@@ -57,12 +57,7 @@ void nts::C4017::run()
         updateOutput();
         return;
     }
-    if (getTristate(13) == UNDEFINED || getTristate(14) == UNDEFINED) {
-        changeOutputs(UNDEFINED);
-        updateOutput();
-        return;
-    }
-    if ((getClockState(13) == LOW_TO_HIGH && getTristate(14) != TRUE) || (getClockState(14) == HIGH_TO_LOW && getTristate(13) == TRUE)) {
+    if ((getClockState(14) == LOW_TO_HIGH && getTristate(13) != TRUE) || (getClockState(13) == HIGH_TO_LOW && getTristate(14) == TRUE)) {
         nextOutput();
         updateOutput();
         return;
