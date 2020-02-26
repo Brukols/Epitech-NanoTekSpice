@@ -133,14 +133,14 @@ void nts::Parser::parseLineChipset(std::string &line)
         throw (FileError("Chipset : A chipset share the same name", "File"));
     try {
         newComponent = _circuit.createComponent(type, name);
+        if (tristate == 1 || tristate == 0) {
+            auto *temp = static_cast<nts::AComponent *>(newComponent.get());
+            temp->setTristatePin(1, static_cast<nts::Tristate>(tristate));
+        }
+        _circuit.addCircuit(newComponent);
     } catch (nts::NTSError const &e) {
         throw e;
     }
-    if (tristate == 1 || tristate == 0) {
-        auto *temp = static_cast<nts::AComponent *>(newComponent.get());
-        temp->setTristatePin(1, static_cast<nts::Tristate>(tristate));
-    }
-    _circuit.addCircuit(newComponent);
 }
 
 void nts::Parser::parseArg()

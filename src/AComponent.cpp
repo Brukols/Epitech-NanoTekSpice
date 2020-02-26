@@ -49,7 +49,9 @@ nts::Tristate nts::AComponent::getTristate(size_t pin)
 void nts::AComponent::setLink(size_t pin, nts::IComponent &other, size_t otherPin)
 // Two input cannot be linked
 {
-    if (pin < 1 || pin > _pair.size())
+    nts::AComponent *otherA = static_cast<nts::AComponent *>(&other);
+    const std::vector <std::pair<size_t, size_t>> &otherPair = otherA->getLinkPin();
+    if ((pin < 1 || pin > _pair.size()) || (otherPin < 1 || otherPin > otherPair.size()))
         throw ComponentError("Invalid number of pins", "setLink");
     _pair[pin - 1].second = otherPin;
     _components[pin - 1] = &other;
