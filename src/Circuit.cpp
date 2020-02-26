@@ -180,24 +180,28 @@ void nts::Circuit::setLink(const std::string &linked1, size_t pinLinked1, const 
             return true;
         return false;
     });
-    if (selectedComponentU1 == circuit.end() || selectedComponentU2 == circuit.end())
-        throw nts::FileError("Try to link component that do not exist", "File");
-    auto *selectedComponent1 = static_cast<nts::AComponent*>(selectedComponentU1->get());
-    auto *selectedComponent2 = static_cast<nts::AComponent*>(selectedComponentU2->get());
-    if (nts::Utility::isOutput(selectedComponent1) && nts::Utility::isOutput(selectedComponent2))
-        throw nts::FileError("Try to link two output together", "File");
-    if (nts::Utility::isInput(selectedComponent1) && nts::Utility::isInput(selectedComponent2))
-        throw nts::FileError("Try to link two input together", "File");
-    if (nts::Utility::isOutput(selectedComponent1))
-        selectedComponent2->setLink(pinLinked2, *selectedComponent1, pinLinked1);
-    else if (nts::Utility::isOutput(selectedComponent1))
-        selectedComponent1->setLink(pinLinked1, *selectedComponent2, pinLinked2);
-    else if (nts::Utility::isInput(selectedComponent2))
-        selectedComponent2->setLink(pinLinked2, *selectedComponent1, pinLinked1);
-    //else if (selectedComponent1 == selectedComponent2)
-    //    selectedComponent2->setLink(pinLinked2, *selectedComponent1, pinLinked1);
-    else
-        selectedComponent1->setLink(pinLinked1, *selectedComponent2, pinLinked2);
+    try {
+        if (selectedComponentU1 == circuit.end() || selectedComponentU2 == circuit.end())
+            throw nts::FileError("Try to link component that do not exist", "File");
+        auto *selectedComponent1 = static_cast<nts::AComponent *>(selectedComponentU1->get());
+        auto *selectedComponent2 = static_cast<nts::AComponent *>(selectedComponentU2->get());
+        if (nts::Utility::isOutput(selectedComponent1) && nts::Utility::isOutput(selectedComponent2))
+            throw nts::FileError("Try to link two output together", "File");
+        if (nts::Utility::isInput(selectedComponent1) && nts::Utility::isInput(selectedComponent2))
+            throw nts::FileError("Try to link two input together", "File");
+        if (nts::Utility::isOutput(selectedComponent1))
+            selectedComponent2->setLink(pinLinked2, *selectedComponent1, pinLinked1);
+        else if (nts::Utility::isOutput(selectedComponent1))
+            selectedComponent1->setLink(pinLinked1, *selectedComponent2, pinLinked2);
+        else if (nts::Utility::isInput(selectedComponent2))
+            selectedComponent2->setLink(pinLinked2, *selectedComponent1, pinLinked1);
+        //else if (selectedComponent1 == selectedComponent2)
+        //    selectedComponent2->setLink(pinLinked2, *selectedComponent1, pinLinked1);
+        else
+            selectedComponent1->setLink(pinLinked1, *selectedComponent2, pinLinked2);
+    } catch (nts::NTSError const &e) {
+        throw e;
+    }
 }
 
 void nts::Circuit::verifCircuit()
