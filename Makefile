@@ -32,6 +32,7 @@ SRC	=	src/nanotekspice.cpp	\
 		src/components/4008.cpp	\
 		src/components/4011.cpp	\
 		src/components/4013.cpp	\
+		src/components/Terminal.cpp	\
 		src/components/4017.cpp	\
 		src/components/4030.cpp	\
 		src/components/4040.cpp	\

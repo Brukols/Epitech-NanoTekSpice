@@ -43,6 +43,7 @@ std::unique_ptr<nts::IComponent> nts::Circuit::createComponent(const std::string
     map["true"] = &nts::Circuit::createTrue;
     map["false"] = &nts::Circuit::createFalse;
     map["clock"] = &nts::Circuit::createClock;
+    map["terminal"] = &nts::Circuit::createTerminal;
 
     if (map.find(type) == map.end())
         throw (nts::FileError("Unknow type component", "File"));
@@ -68,6 +69,11 @@ std::unique_ptr<nts::IComponent> nts::Circuit::create4011(const std::string &val
 std::unique_ptr<nts::IComponent> nts::Circuit::create4013(const std::string &value) const noexcept
 {
     return (std::unique_ptr<nts::IComponent>(new C4013(value)));
+}
+
+std::unique_ptr<nts::IComponent> nts::Circuit::createTerminal(const std::string &value) const noexcept
+{
+    return (std::unique_ptr<nts::IComponent>(new CTerminal(value)));
 }
 
 std::unique_ptr<nts::IComponent> nts::Circuit::create4017(const std::string &value) const noexcept

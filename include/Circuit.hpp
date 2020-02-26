@@ -16,6 +16,7 @@
 #include "components/4008.hpp"
 #include "components/4011.hpp"
 #include "components/4013.hpp"
+#include "components/Terminal.hpp"
 #include "components/4017.hpp"
 #include "components/4030.hpp"
 #include "components/4040.hpp"
@@ -56,6 +57,7 @@ namespace nts
             std::unique_ptr<IComponent> create4008(const std::string &value) const noexcept;
             std::unique_ptr<IComponent> create4011(const std::string &value) const noexcept;
             std::unique_ptr<IComponent> create4013(const std::string &value) const noexcept;
+            std::unique_ptr<IComponent> createTerminal(const std::string &value) const noexcept;
             std::unique_ptr<IComponent> create4017(const std::string &value) const noexcept;
             std::unique_ptr<IComponent> create4030(const std::string &value) const noexcept;
             std::unique_ptr<IComponent> create4040(const std::string &value) const noexcept;
