@@ -20,6 +20,7 @@ void nts::C4017::resetOutput() noexcept
     _actualPin = 9;
     changeOutputs(FALSE);
     setTristatePin(3, TRUE);
+    setTristatePin(12, TRUE);
 }
 
 void nts::C4017::nextOutput() noexcept
