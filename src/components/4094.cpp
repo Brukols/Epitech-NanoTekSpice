@@ -24,47 +24,64 @@ void nts::C4094::changeOutputs(Tristate qn) noexcept
         setTristatePin(qns[i], qn);
 }
 
+void nts::C4094::shiftBits() noexcept
+{
+    const int pin_to_change[] = {
+        11, 12, 13, 14, 7, 6, 5
+    };
+
+    const int other_pin[] = {
+        12, 13, 14, 7, 6, 5, 4
+    };
+
+    for (size_t i = 0; i < 7; i++) {
+        setTristatePin(pin_to_change[i], getTristate(other_pin[i]));
+    }
+}
+
 void nts::C4094::simulateCircuit() noexcept
 {
-    if (getTristate(3) == TRUE && getTristate(15) == FALSE) {
+    if (getClockState(3) == LOW_TO_HIGH && getTristate(15) == FALSE) {
         changeOutputs(UNDEFINED);
-        setTristatePin(9, getTristate(12));
-        setTristatePin(11, getTristate(12));
+        setTristatePin(9, UNDEFINED);
+        setTristatePin(11, UNDEFINED);
         updateOutput();
         return;
     }
 
-    if (getTristate(3) == FALSE && getTristate(15) == FALSE) {
+    if (getClockState(3) == HIGH_TO_LOW && getTristate(15) == FALSE) {
         changeOutputs(UNDEFINED);
-        setTristatePin(10, getTristate(12));
+        setTristatePin(10, UNDEFINED);
         updateOutput();
         return;
     }
 
-    if (getTristate(3) == TRUE && getTristate(15) == TRUE && getTristate(1) == FALSE) {
+    if (getClockState(3) == LOW_TO_HIGH && getTristate(15) == TRUE && getTristate(1) == FALSE) {
         setTristatePin(9, getTristate(12));
         setTristatePin(11, getTristate(12));
         updateOutput();
         return;
     }
 
-    if (getTristate(3) == TRUE && getTristate(15) == TRUE && getTristate(1) == TRUE && getTristate(2) == FALSE) {
-        changeOutputs(FALSE);
+    if (getClockState(3) == LOW_TO_HIGH && getTristate(15) == TRUE && getTristate(1) == TRUE && getTristate(2) == FALSE) {
+        shiftBits();
+        setTristatePin(4, FALSE);
         setTristatePin(9, getTristate(12));
         setTristatePin(11, getTristate(12));
         updateOutput();
         return;
     }
 
-    if (getTristate(3) == TRUE && getTristate(15) == TRUE && getTristate(1) == TRUE && getTristate(2) == TRUE) {
-        changeOutputs(TRUE);
+    if (getClockState(3) == LOW_TO_HIGH && getTristate(15) == TRUE && getTristate(1) == TRUE && getTristate(2) == TRUE) {
+        shiftBits();
+        setTristatePin(4, TRUE);
         setTristatePin(9, getTristate(12));
         setTristatePin(11, getTristate(12));
         updateOutput();
         return;
     }
 
-    if (getTristate(3) == FALSE && getTristate(15) == TRUE && getTristate(1) == TRUE && getTristate(2) == TRUE) {
+    if (getClockState(3) == HIGH_TO_LOW && getTristate(15) == TRUE && getTristate(1) == TRUE && getTristate(2) == TRUE) {
         setTristatePin(10, getTristate(12));
         updateOutput();
         return;
@@ -73,7 +90,5 @@ void nts::C4094::simulateCircuit() noexcept
 
 void nts::C4094::run()
 {
-    for (size_t i = 0; i < 3; i++) {
-        simulateCircuit();
-    }
+    simulateCircuit();
 }

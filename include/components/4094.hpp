@@ -22,6 +22,7 @@ namespace nts
         private:
             void changeOutputs(Tristate qn) noexcept;
             void simulateCircuit() noexcept;
+            void shiftBits() noexcept;
     };
 }
 
