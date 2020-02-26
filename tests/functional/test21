@@ -1,10 +1,22 @@
 expected:
 # -----------TEST 0 --------------- #
 0a1
+0a1
+0af
+02f
 command:
 # -----------TEST 0 --------------- #
 i=0
 simulate
 i=1
+simulate
+a=1
+simulate
+b=1
+c=1
+d=1
+simulate
+b=0
+h=0
 simulate
 exit
