@@ -61,7 +61,6 @@ void nts::C4040::simulateCircuit() noexcept
     updateOutput();
 }
 
-#include <iostream>
 void nts::C4040::countBinary(int nb) noexcept
 {
     std::string str = std::bitset<12>(nb).to_string();
@@ -89,8 +88,9 @@ void nts::C4040::run()
         i = 0;
         return;
     }
-    if (getTristate(10) == FALSE)
+    if (getClockState(10) == HIGH_TO_LOW) {
         i = (i == 4095 ? 0 : i + 1);
-    countBinary(i);
-    updateOutput();
+        countBinary(i);
+        updateOutput();
+    }
 }

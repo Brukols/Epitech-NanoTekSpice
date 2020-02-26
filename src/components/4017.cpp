@@ -18,6 +18,8 @@ nts::C4017::~C4017()
 void nts::C4017::resetOutput() noexcept
 {
     _actualPin = 9;
+    changeOutputs(FALSE);
+    setTristatePin(3, TRUE);
 }
 
 void nts::C4017::nextOutput() noexcept
@@ -48,24 +50,19 @@ void nts::C4017::changeOutputs(Tristate state) noexcept
     setTristatePin(11, state);
 }
 
-void nts::C4017::simulateCircuit() noexcept
-{
-    // if CP0 (pin 14) is FALSE, the CP1 (pin 13) cannot be TRUE
-    if (getTristate(14) == FALSE) {
-        setTristatePin(13, FALSE);
-    }
-    if (getTristate(15) == TRUE)
-        resetOutput();
-
-    updateOutput();
-}
-
 void nts::C4017::run()
 {
-    for (size_t i = 0; i < 3; i++) {
-        simulateCircuit();
+    if (getTristate(15) == TRUE) {
+        resetOutput();
+        updateOutput();
+        return;
     }
-    if (getTristate(13) == TRUE || getTristate(14) == TRUE) {
+    if (getTristate(13) == UNDEFINED || getTristate(14) == UNDEFINED) {
+        changeOutputs(UNDEFINED);
+        updateOutput();
+        return;
+    }
+    if ((getClockState(13) == LOW_TO_HIGH && getTristate(14) == FALSE) || (getClockState(14) == HIGH_TO_LOW && getTristate(13) == TRUE)) {
         nextOutput();
         updateOutput();
         return;

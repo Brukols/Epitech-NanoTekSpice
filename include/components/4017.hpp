@@ -23,7 +23,6 @@ namespace nts
             void resetOutput() noexcept;
             void nextOutput() noexcept;
             void changeOutputs(nts::Tristate) noexcept;
-            void simulateCircuit() noexcept;
 
         private:
             size_t _actualPin;
