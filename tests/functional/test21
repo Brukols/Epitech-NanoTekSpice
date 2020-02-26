@@ -1,0 +1,10 @@
+expected:
+# -----------TEST 0 --------------- #
+0a1
+command:
+# -----------TEST 0 --------------- #
+i=0
+simulate
+i=1
+simulate
+exit

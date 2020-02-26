@@ -1,0 +1,25 @@
+#Terminal output
+
+.chipsets:
+input       a
+input       b
+input       c
+input       d
+input       e
+input       f
+input       g
+input       h
+input       i
+
+terminal    terminal
+
+.links:
+a:1     terminal:1
+b:1     terminal:2
+c:1     terminal:3
+d:1     terminal:4
+e:1     terminal:5
+f:1     terminal:6
+g:1     terminal:7
+h:1     terminal:8
+i:1     terminal:9

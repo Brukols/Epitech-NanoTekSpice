@@ -48,7 +48,7 @@ exec_test()
     done < "tests/functional/$2"
 
     # Execute binary file
-    result=`echo -ne "$command" | $1`
+    result=`echo -ne "$command" | $1 2>&1`
     
     # Parse results
     prompt=0
@@ -105,5 +105,6 @@ exec_test "./nanotekspice ressources/basics/direct_connection.nts cin=1" "test17
 exec_test "./nanotekspice ressources/basics/true.nts" "test18" "true"
 exec_test "./nanotekspice ressources/basics/false.nts" "test19" "false"
 exec_test "./nanotekspice ressources/basics/clock.nts cin=1" "test20" "clock"
+exec_test "./nanotekspice ressources/basics/terminal.nts a=1 b=0 c=0 d=0 e=0 f=1 g=0 h=1 i=0" "test21" "terminal"
 
 exit 0
