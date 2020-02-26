@@ -17,7 +17,7 @@ nts::C4017::~C4017()
 
 void nts::C4017::resetOutput() noexcept
 {
-    _actualPin = 9;
+    _actualPin = 0;
     changeOutputs(FALSE);
     setTristatePin(3, TRUE);
     setTristatePin(12, TRUE);

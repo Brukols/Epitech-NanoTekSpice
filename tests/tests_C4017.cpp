@@ -38,7 +38,7 @@ Test(C4017, test00)
     component->setTristatePin(14, nts::TRUE);
     component->setTristatePin(13, nts::FALSE);
     component->setClockState(14);
-    component->setClockState(15);
+    component->setClockState(13);
     component->run();
 
     cr_assert(q0->getTristate() == nts::TRUE);
@@ -97,6 +97,8 @@ Test(C4017, test01)
     component->setTristatePin(15, nts::TRUE);
     component->setTristatePin(14, nts::TRUE);
     component->setTristatePin(13, nts::FALSE);
+    component->setClockState(14);
+    component->setClockState(13);
     component->run();
     component->setTristatePin(15, nts::FALSE);
     component->run();
@@ -133,9 +135,11 @@ Test(C4017, test02)
 
     component->setTristatePin(14, nts::FALSE);
     component->setTristatePin(13, nts::TRUE);
+    component->setClockState(14);
+    component->setClockState(13);
     component->run();
 
-    cr_assert(component->getTristate(13) == nts::FALSE);
+    cr_assert(component->getTristate(13) == nts::TRUE);
 
     delete component;
 }
