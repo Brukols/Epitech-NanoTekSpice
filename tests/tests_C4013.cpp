@@ -29,8 +29,8 @@ Test(C4013, test00)
     component->setTristatePin(6, nts::FALSE);
     component->run();
 
-    cr_assert(q->getTristate() == nts::FALSE);
-    cr_assert(_q->getTristate() == nts::TRUE);
+    cr_assert(q->getTristate() == nts::UNDEFINED);
+    cr_assert(_q->getTristate() == nts::UNDEFINED);
     delete component;
     delete q;
     delete _q;
@@ -62,8 +62,8 @@ Test(C4013, test01, .init=redirect_all_std)
     component->setTristatePin(6, nts::FALSE);
     component->run();
 
-    cr_assert(q->getTristate() == nts::TRUE);
-    cr_assert(_q->getTristate() == nts::FALSE);
+    cr_assert(q->getTristate() == nts::UNDEFINED);
+    cr_assert(_q->getTristate() == nts::UNDEFINED);
     delete component;
     delete q;
     delete _q;
@@ -228,8 +228,8 @@ Test(C4013, test06)
     component->setTristatePin(8, nts::FALSE);
     component->run();
 
-    cr_assert(q->getTristate() == nts::FALSE);
-    cr_assert(_q->getTristate() == nts::TRUE);
+    cr_assert(q->getTristate() == nts::UNDEFINED);
+    cr_assert(_q->getTristate() == nts::UNDEFINED);
     delete component;
     delete q;
     delete _q;
@@ -261,8 +261,8 @@ Test(C4013, test07, .init=redirect_all_std)
     component->setTristatePin(8, nts::FALSE);
     component->run();
 
-    cr_assert(q->getTristate() == nts::TRUE);
-    cr_assert(_q->getTristate() == nts::FALSE);
+    cr_assert(q->getTristate() == nts::UNDEFINED);
+    cr_assert(_q->getTristate() == nts::UNDEFINED);
     delete component;
     delete q;
     delete _q;
