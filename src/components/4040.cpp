@@ -78,7 +78,7 @@ void nts::C4040::run()
     static int i = 0;
 
     if (getTristate(11) == UNDEFINED) {
-        changeOutputs(UNDEFINED);
+        changeOutputs(FALSE);
         updateOutput();
         return;
     }
@@ -88,9 +88,9 @@ void nts::C4040::run()
         i = 0;
         return;
     }
-    if (getTristate(10) == FALSE) {
+    if (getClockState(10) == HIGH_TO_LOW) {
         i = (i == 4095 ? 0 : i + 1);
-        countBinary(i);
-        updateOutput();
     }
+    countBinary(i);
+    updateOutput();
 }
