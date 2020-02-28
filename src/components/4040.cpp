@@ -88,7 +88,7 @@ void nts::C4040::run()
         i = 0;
         return;
     }
-    if (getClockState(10) == HIGH_TO_LOW) {
+    if (getTristate(10) == FALSE) {
         i = (i == 4095 ? 0 : i + 1);
         countBinary(i);
         updateOutput();

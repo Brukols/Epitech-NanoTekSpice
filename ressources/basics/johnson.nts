@@ -5,6 +5,7 @@
 .chipsets:
 clock		clockup
 input		master_reset
+clock       clock
 
 output		o0
 output		o1
@@ -23,6 +24,7 @@ output		cascade
 
 .links:
 clockup:1	johnson:14
+clock:1	johnson:13
 master_reset:1	johnson:15
 
 o0:1		johnson:3

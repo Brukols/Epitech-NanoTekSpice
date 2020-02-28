@@ -58,7 +58,7 @@ void nts::C4017::run()
         updateOutput();
         return;
     }
-    if ((getClockState(14) == LOW_TO_HIGH && getTristate(13) != TRUE) || (getClockState(13) == HIGH_TO_LOW && getTristate(14) == TRUE)) {
+    if ((getTristate(14) == TRUE && getTristate(13) != TRUE) || (getTristate(13) == FALSE && getTristate(14) == TRUE)) {
         nextOutput();
         updateOutput();
         return;
