@@ -53,12 +53,17 @@ void nts::C4017::changeOutputs(Tristate state) noexcept
 
 void nts::C4017::run()
 {
+    if (getClockState(14) == INITALIZATION && getClockState(13) == INITALIZATION) {
+        resetOutput();
+        updateOutput();
+        return;
+    }
     if (getTristate(15) == TRUE) {
         resetOutput();
         updateOutput();
         return;
     }
-    if ((getTristate(14) == TRUE && getTristate(13) != TRUE) || (getTristate(13) == FALSE && getTristate(14) == TRUE)) {
+    if ((getClockState(14) == LOW_TO_HIGH) || (getClockState(13) == HIGH_TO_LOW && getTristate(14) == TRUE)) {
         nextOutput();
         updateOutput();
         return;
