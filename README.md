@@ -9,7 +9,7 @@ As parameter, we take a configuration file in order to generate our own electric
 ## Compilation
 
 ```bash
-make # Compile of the project
+make # Compile the project
 ```
 
 ## Usage
