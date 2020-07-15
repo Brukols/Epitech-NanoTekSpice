@@ -1,6 +1,6 @@
 # NanoTekSpice
 
-NanoTekSpice is an Epitech project. The goal was to simulate eletric circuit.
+NanoTekSpice is an Epitech project. The goal was to simulate an eletric circuit.
 
 ## Description
 
@@ -14,7 +14,7 @@ make # Compile the project
 
 ## Usage
 
-You must to specify a configuration file and all the inputs must to have values.
+You must specify a configuration file and all the inputs must have values.
 
 ```bash
 ./nanotekspice ressources/basics/and.nts a=0 b=1 a2=1 b2=1 a3=0 b3=0 a4=1 b4=0
